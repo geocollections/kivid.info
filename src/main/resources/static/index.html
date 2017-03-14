@@ -1,107 +1,93 @@
-<!doctype html>
-<!-- Website template by freewebsitetemplates.com -->
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mineraalid, kivimid ja maavarad</title>
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-    <link rel="stylesheet" href="/css/mobile.css" type="text/css">
-</head>
-<body>
-<div id="page">
-    <div id="header">
-        <div>
-            <a href="index.html" class="logo"><img src="images/g2a.jpg" alt="" width="60" height="60"></a>
-            <ul id="navigation">
-                <li class="selected">
-                    <a href="index.html">Tutvustus</a>
-                </li>
-                <li>
-                    <a href="rocks.html">Kivimid</a>
-                </li>
-                <li>
-                    <a href="minerals.html">Mineraalid</a>
-                </li>
-                <li >
-                    <a href="projects.html">Maavarad</a>
-                </li>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-                <li>
-                    <a href="contact.html">Otsing</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div id="body" class="home">
-        <div class="header">
-            <div>
-                <img src="images/g2tsta.png" alt="" class="kivi" height="400">
-                <h1> Üldised eesmärgid:</h1>
-                <h2>pakkuda (Eesti) tavakodanikule, õpilasele ja üliõpilasele, aga ka spetsialistile usaldusväärset vaba kasutusega informatsiooni sh pildimaterjali maailma ja Eesti mineraalide, kivimite ja maavarade kohta (kõik maavarad on ühtlasi ka kivimid/mineraalid).
-                    </h2>
+        <title>Kivimid, mineraalid ja maavarad</title>
 
-                <a href="blog.html" class="more">Rohkem</a>
+        <!-- Bootstrap core CSS -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Kivid.info</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Üldine</a></li>
+                        <li><a href="#rocks">Kivimid</a></li>
+                        <li><a href="#minerals">Mineraalid</a></li>
+                        <li><a href="#resources">Maavarad</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#Estonian">Eesti</a></li>
+                        <li><a href="#English">Inglise</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
             </div>
-            <div>
-                <h3></h3>
-                <ul>
-                    <li>
-                        <a href="projects.html"><img src="images/g1p.png" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="projects.html"><img src="images/g1p.png" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="projects.html"><img src="images/g1p.png" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="projects.html"><img src="images/g1p.png" alt=""></a>
-                    </li>
-                </ul>
-                <h3></h3>
+        </nav>
+
+        <div class="container">
+
+            <!-- Main component for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col-md-6">
+                         <img src="images/g2tsta.png" alt="" height="400">
+                    </div>
+                    <div class="col-md-6">
+                        <h2>Üldised eesmärgid</h2>
+                        <p>Pakkuda (Eesti) tavakodanikule, õpilasele ja üliõpilasele, aga ka spetsialistile usaldusväärset vaba kasutusega informatsiooni sh pildimaterjali maailma ja Eesti mineraalide, kivimite ja maavarade kohta (kõik maavarad on ühtlasi ka kivimid/mineraalid).</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <img alt="" style="width: 200px; height: 200px;" src="images/g1.jpg">
+                        <img alt="" style="width: 200px; height: 200px;" src="images/g1.jpg">
+                        <img alt="" style="width: 200px; height: 200px;" src="images/g1.jpg">
+                        <img alt="" style="width: 200px; height: 200px;" src="images/g1.jpg">
+                    </div>
+                </div>
+                <footer>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Kasulikud lingid</p>
+                            <p><a href="http://mindat.org">Mindat</a></p>
+                            <p><a href="http://fossiilid.info" >Fossiilid</a></p>
+                            <p><a href="http://geokogud.info">Geokogud</a></p>
+                        </div>
+                    </div>
+                </footer>
             </div>
-        </div>
-        <div class="body">
-            <div>
-                <h1>Üldine</h1>
-                <p>Sisuleht üldine
-                    See on üldtermini leht, üldtermin on nt mineraalid, sulfiidid, vulkaanilised kivimid jne
-                    Üldlehel on lühike tutvustus, pildid ja näited, mis selle rühma alla kuuluvad; näidete kaudu jõuab edasi kitsamate kategooriateni.
-                    Siia tuleb üldine jutt kivimitest ja käesolevast lehest.
-                </p>
-            </div>
-        </div>
-        <div class="footer">
-            <div>
-            </div>
-        </div>
-    </div>
-    <div id="footer">
-        <div class="connect">
-            <div>
-                <h1>Kasulikud lingid</h1>
-            </div>
-            <div>
-                <ul>
-                    <li>
-                        <a href="http://mindat.org">mindat</a>
-                    </li>
-                    <li>
-                        <a href="http://fossiilid.info" >fossiilid</a>
-                    </li>
-                    <li>
-                        <a href="http://geokogud.info">geokogud</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="footnote">
-            <div>
-                <p>-----------------------------------</p>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
+
+        </div> <!-- /container -->
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+    </body>
 </html>
