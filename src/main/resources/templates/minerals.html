@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Kivimid, mineraalid ja maavarad</title>
+    <title th:text="#{title}"></title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
@@ -35,14 +35,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/">Üldine</a></li>
-                <li><a href="/rocks">Kivimid</a></li>
-                <li class="active"><a href="/minerals">Mineraalid</a></li>
-                <li><a href="/resources">Maavarad</a></li>
+                <li><a href="/" th:text="#{general}"></a></li>
+                <li><a href="/rocks" th:text="#{rocks}"></a></li>
+                <li class="active"><a href="/minerals" th:text="#{minerals}"></a></li>
+                <li><a href="/resources" th:text="#{natural_resources}"></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#Estonian">Eesti</a></li>
-                <li><a href="#English">Inglise</a></li>
+                <li><a href="#Estonian" th:text="#{estonian}"></a></li>
+                <li><a href="#English" th:text="#{english}"></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -57,17 +57,17 @@
                 <img src="images/general_mineral.jpg" alt="" height="400" />
             </div>
             <div class="col-md-6">
-                <h2>Mineraalid</h2>
-                <p>Mineraal on kindla, kuid mitte fikseeritud keemilise koostise ja enamasti kristallilise struktuuriga looduslikult esinev anorgaaniline tahke aine. Mineraali mõiste ei ole siiski selgepiiriline: ükski mainitud tunnustest ei ole mineraalidele alati kohustuslik.</p>
+                <h2 th:text="#{minerals}"></h2>
+                <p th:text="#{minerals.introduction}"></p>
             </div>
         </div>
         <footer>
             <div class="row">
                 <div class="col-md-12">
-                    <p>Kasulikud lingid</p>
-                    <p><a href="http://mindat.org">Mindat</a></p>
-                    <p><a href="http://fossiilid.info" >Fossiilid</a></p>
-                    <p><a href="http://geokogud.info">Geokogud</a></p>
+                    <p th:text="#{useful_links}"></p>
+                    <p><a href="http://mindat.org">mindat.org</a></p>
+                    <p><a href="http://fossiilid.info" >fossiilid.info</a></p>
+                    <p><a href="http://geokogud.info">geokogud.info</a></p>
                 </div>
             </div>
         </footer>
