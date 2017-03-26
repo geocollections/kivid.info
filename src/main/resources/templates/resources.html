@@ -41,8 +41,8 @@
                 <li class="active"><a href="/resources" th:text="#{natural_resources}"></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#Estonian" th:text="#{estonian}"></a></li>
-                <li><a href="#English" th:text="#{english}"></a></li>
+                <li><a th:href="${#httpServletRequest.requestURI}+'?lang=et'" th:text="#{estonian}"></a></li>
+                <li><a th:href="${#httpServletRequest.requestURI}+'?lang=en'" th:text="#{english}"></a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
