@@ -17,8 +17,11 @@ public class RockController {
 
     @RequestMapping(value = "/rock/{id}", method = RequestMethod.GET)
     public String getRock(@PathVariable("id") String id, Model model) {
-        RockApiResult rockApiResult= rockService.getRock(id);
-        model.addAttribute("rock", rockApiResult);
-        return "rock";
+        RockApiResult rockApiResult = rockService.getRock(id);
+        if (rockApiResult != null) {
+            model.addAttribute("rock", rockApiResult);
+            return "rock";
+        }
+        return "rock_error";
     }
 }
