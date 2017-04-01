@@ -29,5 +29,6 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
