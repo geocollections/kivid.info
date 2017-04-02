@@ -29,7 +29,7 @@ public class ApiConnectionHelper {
     public String makeRequest(String requestString)
             throws Exception {
         HttpClient httpClient = getHttpClient();
-        String getString = addressBase + requestString + "?format=json";
+        String getString = addressBase + requestString;
         HttpGet get = new HttpGet(getString);
 
         HttpResponse httpResponse = httpClient.execute(get);
