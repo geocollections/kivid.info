@@ -29,11 +29,19 @@
 
     <!--/*@thymesVar id="images" type="List<info.kivid.model.ImageApiResult>"*/-->
     <!--/*@thymesVar id="image" type="info.kivid.model.ImageApiResult"*/-->
-    <span th:each="image : ${images}">
-        <a data-fancybox="gallery" th:href="${image.image_url}">
-            <img th:src="${image.image_url}" height="200" style="padding: 20px;"/>
-        </a>
-    </span>
+    <div class="row">
+        <div class="col-md-4" th:each="image : ${images}">
+            <a data-fancybox="gallery" th:href="${image.image_url}">
+                <img th:src="${image.image_url}" height="200" style="padding: 20px;"/>
+            </a>
+            <br />
+            <span th:text="${image.specimen__id}"></span>
+            <br />
+            <span th:text="${image.agent__agent}"></span>
+            <br />
+            <span th:text="${image.licence__licence}"></span>
+        </div>
+    </div>
 
 </div> <!-- /container -->
 
