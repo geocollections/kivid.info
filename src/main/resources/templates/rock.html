@@ -21,7 +21,30 @@
 </head>
 
 <body>
-
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Kivid.info</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/" th:text="#{general}"></a></li>
+                <li><a href="/rocks" th:text="#{rocks}"></a></li>
+                <li><a href="/minerals" th:text="#{minerals}"></a></li>
+                <li><a href="/resources" th:text="#{natural_resources}"></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="${#httpServletRequest.requestURI}+'?lang=et'" th:text="#{estonian}"></a></li>
+                <li><a th:href="${#httpServletRequest.requestURI}+'?lang=en'" th:text="#{english}"></a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
 
 
 <div class="container">
@@ -31,8 +54,49 @@
         <div class="row">
             <div class="col-md-12">
                 <!--/*@thymesVar id="rock" type="info.kivid.model.RockApiResult"*/-->
-                <h2 th:text="${rock.name}"></h2>
-                <p th:text="${rock.description}"></p>
+
+                <div th:if="${(param.lang != null) and (param.lang[0] == 'en')}">
+                    <h2 th:text="${rock.name_en}"></h2>
+                </div>
+                <div th:if="${(param.lang == null) or (param.lang[0] == 'et')}">
+                    <h2 th:text="${rock.name}"></h2>
+                </div>
+
+                <p><a th:href="${#httpServletRequest.requestURI}+'/gallery'" th:text="#{gallery}"></a></p>
+
+                <p th:text="${rock.formula}"></p><!--<p th:text="${rock.formula_html}"></p>-->
+
+                <div th:if="${(param.lang != null) and (param.lang[0] == 'en')}">
+                    <p th:text="${rock.description_en}">N/A</p>
+                </div>
+                <div th:if="${(param.lang == null) or (param.lang[0] == 'et')}">
+                    <p th:text="${rock.description}"></p>
+                </div>
+
+                <div th:if="${(param.lang != null) and (param.lang[0] == 'en')}">
+                    <p th:text="${rock.description_in_estonia_en}"></p>
+                </div>
+                <div th:if="${(param.lang == null) or (param.lang[0] == 'et')}">
+                    <p th:text="${rock.description_in_estonia}"></p>
+                </div>
+
+                <div th:if="${(param.lang != null) and (param.lang[0] == 'en')}">
+                    <p th:text="${rock.description_usage_en}"></p>
+                </div>
+                <div th:if="${(param.lang == null) or (param.lang[0] == 'et')}">
+                    <p th:text="${rock.description_usage}"></p>
+                </div>
+
+               <!-- <div class="panel panel-default">
+                    <div class="panel-heading"><span th:text="#{links_title}"></span></div>
+                    <div class="panel-body">
+                        <ul>
+                            <li><a href="https://www.mindat.org/min-3826.html">Mindat</a></li>
+                            &lt;!&ndash;https://www.mindat.org/min-${rock.mindat_id}.html&ndash;&gt;
+                        </ul>
+                    </div>
+                </div>-->
+
             </div>
         </div>
     </div>
