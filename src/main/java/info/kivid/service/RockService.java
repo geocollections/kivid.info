@@ -22,11 +22,36 @@ public class RockService {
             String resultString = apiConnectionHelper.makeRequest(requestString);
             ObjectMapper objectMapper = new ObjectMapper();
             RockApiResultWrapper rockApiResultWrapper = objectMapper.readValue(resultString, RockApiResultWrapper.class);
-            return rockApiResultWrapper.getResults()[0];
+            RockApiResult initialResult = rockApiResultWrapper.getResults()[0];
+
+            return adjustRockApiResult(initialResult);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private RockApiResult adjustRockApiResult(RockApiResult initial) {
+        if (initial == null){
+            return initial;
+        } else {
+            if(initial.getMindat_id() != null) {
+                //https://www.mindat.org/min-3826.html
+                String mindatLink = "https://www.mindat.org/min-" + initial.getMindat_id() + ".html";
+                initial.setMindat_id(mindatLink);
+            }
+            if(initial.getLink_wikipedia_en() != null) {
+                //https://en.wikipedia.org/wiki/Pyrite
+                String wikiLink = "https://en.wikipedia.org/wiki/" + initial.getLink_wikipedia_en();
+                initial.setLink_wikipedia_en(wikiLink);
+            }
+            if(initial.getLink_wikipedia() != null) {
+                //https://et.wikipedia.org/wiki/P%C3%BCriit
+                String wikiLinkEst = "https://et.wikipedia.org/wiki/" + initial.getLink_wikipedia();
+                initial.setLink_wikipedia(wikiLinkEst);
+            }
+        }
+        return initial;
     }
 
     public List<ImageApiResult> getRockGallery(String id) {

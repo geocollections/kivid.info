@@ -87,15 +87,16 @@
                     <p th:text="${rock.description_usage}"></p>
                 </div>
 
-               <!-- <div class="panel panel-default">
+               <div class="panel panel-default">
                     <div class="panel-heading"><span th:text="#{links_title}"></span></div>
                     <div class="panel-body">
                         <ul>
-                            <li><a href="https://www.mindat.org/min-3826.html">Mindat</a></li>
-                            &lt;!&ndash;https://www.mindat.org/min-${rock.mindat_id}.html&ndash;&gt;
+                            <li th:classappend="${rock.mindat_id == null} ? hidden"><a th:href="${rock.mindat_id}">Mindat</a></li>
+                            <li th:classappend="${rock.link_wikipedia == null} ? hidden"><a th:href="${rock.link_wikipedia}">Wikipedia (EST)</a></li>
+                            <li th:classappend="${rock.link_wikipedia_en == null} ? hidden"><a th:href="${rock.link_wikipedia_en}">Wikipedia (ENG)</a></li>
                         </ul>
                     </div>
-                </div>-->
+                </div>
 
             </div>
         </div>
