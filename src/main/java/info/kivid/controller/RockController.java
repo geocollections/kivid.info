@@ -37,4 +37,9 @@ public class RockController {
         }
         return "rock_error";
     }
+
+    @RequestMapping(value = "/rock/{id}/map", method = RequestMethod.GET)
+    public String getRockMap(@PathVariable("id") String id, Model model) {
+        return "rock_map";
+    }
 }
