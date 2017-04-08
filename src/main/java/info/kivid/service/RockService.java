@@ -17,7 +17,7 @@ public class RockService {
     public RockApiResult getRock(String id) {
 
         ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
-        String requestString = "rock/" + id + "?format=json";
+        String requestString = "rock/" + id + "?in_portal=1&format=json";
         try {
             String resultString = apiConnectionHelper.makeRequest(requestString);
             ObjectMapper objectMapper = new ObjectMapper();
