@@ -2,10 +2,10 @@ package info.kivid.model;
 
 import java.util.List;
 
-public class ApiResultWrapper {
+public class ApiResultWrapper<T> {
 
     private int count;
-    private List<ImageApiResult> results;
+    private List<T> results;
 
     public int getCount() {
         return count;
@@ -15,11 +15,11 @@ public class ApiResultWrapper {
         this.count = count;
     }
 
-    public List<ImageApiResult> getResults() {
+    public List<T> getResults() {
         return results;
     }
 
-    public void setResults(List<ImageApiResult> results) {
+    public void setResults(List<T> results) {
         this.results = results;
     }
 }

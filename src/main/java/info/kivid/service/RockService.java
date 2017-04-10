@@ -61,7 +61,21 @@ public class RockService {
         try {
             String resultString = apiConnectionHelper.makeRequest(requestString);
             ObjectMapper objectMapper = new ObjectMapper();
-            ApiResultWrapper apiResultWrapper = objectMapper.readValue(resultString, ApiResultWrapper.class);
+            ApiResultWrapper<ImageApiResult> apiResultWrapper = objectMapper.readValue(resultString, ApiResultWrapper.class);
+            return apiResultWrapper.getResults();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<RockApiResult> search(String searchString) {
+        ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
+        String requestString = "rock/?name__icontains=" + searchString + "&format=json";
+        try {
+            String resultString = apiConnectionHelper.makeRequest(requestString);
+            ObjectMapper objectMapper = new ObjectMapper();
+            ApiResultWrapper<RockApiResult> apiResultWrapper = objectMapper.readValue(resultString, ApiResultWrapper.class);
             return apiResultWrapper.getResults();
         } catch (Exception e) {
             e.printStackTrace();
