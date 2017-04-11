@@ -2,67 +2,58 @@ package info.kivid.model;
 
 public class ImageApiResult {
 
-    private String image_url;
-    private String agent__agent;
-    private String date;
-    private String date_taken_free;
-    private String licence__licence;
-    private String copyright_agent__agent;
-    private String specimen__id;
+    private String id;
+    private String rock_id;
+    private String image;
+    private String image__image;
+    private String image__database;
+    private String image__image_url;
 
-    public String getImage_url() {
-        return image_url;
+    public String getId() {
+        return id;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getAgent__agent() {
-        return agent__agent;
+    public String getRock_id() {
+        return rock_id;
     }
 
-    public void setAgent__agent(String agent__agent) {
-        this.agent__agent = agent__agent;
+    public void setRock_id(String rock_id) {
+        this.rock_id = rock_id;
     }
 
-    public String getDate() {
-        return date;
+    public String getImage() {
+        return image;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getDate_taken_free() {
-        return date_taken_free;
+    public String getImage__image() {
+        return image__image;
     }
 
-    public void setDate_taken_free(String date_taken_free) {
-        this.date_taken_free = date_taken_free;
+    public void setImage__image(String image__image) {
+        this.image__image = image__image;
     }
 
-    public String getLicence__licence() {
-        return licence__licence;
+    public String getImage__database() {
+        return image__database;
     }
 
-    public void setLicence__licence(String licence__licence) {
-        this.licence__licence = licence__licence;
+    public void setImage__database(String image__database) {
+        this.image__database = image__database;
     }
 
-    public String getCopyright_agent__agent() {
-        return copyright_agent__agent;
+    public String getImage__image_url() {
+        return image__image_url;
     }
 
-    public void setCopyright_agent__agent(String copyright_agent__agent) {
-        this.copyright_agent__agent = copyright_agent__agent;
-    }
-
-    public String getSpecimen__id() {
-        return specimen__id;
-    }
-
-    public void setSpecimen__id(String specimen__id) {
-        this.specimen__id = specimen__id;
+    public void setImage__image_url(String image__image_url) {
+        this.image__image_url = image__image_url;
     }
 }

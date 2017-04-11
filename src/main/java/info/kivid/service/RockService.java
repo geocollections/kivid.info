@@ -57,7 +57,7 @@ public class RockService {
     public List<ImageApiResult> getRockGallery(String id) {
 
         ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
-        String requestString = "specimen_image/?rockimages__rock_id=" + id + "&fields=agent__agent,date,date_taken_free,image_url,licence__licence,copyright_agent__agent,specimen__id&format=json";
+        String requestString = "rock_image/?rock_id=" + id + "&format=json";
         try {
             String resultString = apiConnectionHelper.makeRequest(requestString);
             ObjectMapper objectMapper = new ObjectMapper();

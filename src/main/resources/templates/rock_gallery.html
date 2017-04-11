@@ -23,27 +23,17 @@
 
 <body>
 
-
-
 <div class="container">
-
-    <!--/*@thymesVar id="images" type="List<info.kivid.model.ImageApiResult>"*/-->
-    <!--/*@thymesVar id="image" type="info.kivid.model.ImageApiResult"*/-->
     <div class="row">
         <div class="col-md-4" th:each="image : ${images}">
-            <a data-fancybox="gallery" th:href="${image.image_url}">
-                <img th:src="${image.image_url}" height="200" style="padding: 20px;"/>
+            <a data-fancybox="gallery" th:href="${image.image__image_url}" th:attr="data-caption=${image.rock_id}">
+                <img th:src="${image.image__image_url}" height="200" style="padding: 20px;"/>
             </a>
             <br />
-            <span th:text="${image.specimen__id}"></span>
-            <br />
-            <span th:text="${image.agent__agent}"></span>
-            <br />
-            <span th:text="${image.licence__licence}"></span>
+            <span th:text="${image.rock_id}"></span>
         </div>
     </div>
-
-</div> <!-- /container -->
+</div>
 
 
 <!-- Bootstrap core JavaScript
