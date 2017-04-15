@@ -40,6 +40,7 @@ public class RockController {
 
     @RequestMapping(value = "/rock/{id}/map", method = RequestMethod.GET)
     public String getRockMap(@PathVariable("id") String id, Model model) {
+        model.addAttribute("rockId", id);
         return "rock_map";
     }
 }

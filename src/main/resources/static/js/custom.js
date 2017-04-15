@@ -1,7 +1,6 @@
 $(function() {
-
-  //TODO: replace 1 with rock id when rock location works on API side
-  $.getJSON('/rock/228/locations', function(locations) {
+  var rockId = $('body').attr('data-has-map');
+  if (rockId !== undefined) {
 
     var olMap = new ol.Map({
       target: 'map',
@@ -25,12 +24,12 @@ $(function() {
         new ol.style.Style({
           image: new ol.style.Circle({
             radius: 5,
-            fill: new ol.style.Fill({ color: 'rgba(236, 102, 37, 0.7)', opacity: 0.9 })
+            fill: new ol.style.Fill({color: 'rgba(236, 102, 37, 0.7)', opacity: 0.9})
           }),
           text: (resolution > 500 ? null : new ol.style.Text({
             font: '10pt Arial, sans-serif',
             text: feature.name,
-            fill: new ol.style.Fill({ color: 'rgba(236, 102, 37, 0.7)' }),
+            fill: new ol.style.Fill({color: 'rgba(236, 102, 37, 0.7)'}),
             textAlign: 'left',
             textBaseline: 'bottom',
             offsetX: 5,
@@ -42,24 +41,32 @@ $(function() {
 
     var vectorSource = new ol.source.Vector({
       attributions: [new ol.Attribution({
-        html: " "})]
+        html: " "
+      })]
     });
 
-    for (var i = 0; i < locations.length; i++) {
-      var centroidLL = ol.proj.transform([Number(locations[i].locality__longitude), Number(locations[i].locality__latitude)], 'EPSG:4326', 'EPSG:3857');
-      var centroidPoint = new ol.geom.Point(centroidLL);
-      var feature = new ol.Feature({ geometry: centroidPoint });
-      feature.name = locations[i].locality__locality;
-      feature.fid = locations[i].id;
-      vectorSource.addFeature(feature);
-    }
+    $.getJSON('/rock/' + rockId + '/locations', function (locations) {
+      if (locations.length) {
+        for (var i = 0; i < locations.length; i++) {
+          var centroidLL = ol.proj.transform([Number(locations[i].locality__longitude), Number(locations[i].locality__latitude)], 'EPSG:4326', 'EPSG:3857');
+          var centroidPoint = new ol.geom.Point(centroidLL);
+          var feature = new ol.Feature({geometry: centroidPoint});
+          feature.name = locations[i].locality__locality;
+          feature.fid = locations[i].id;
+          vectorSource.addFeature(feature);
+        }
+      }
 
-    var layerData = new ol.layer.Vector({
-      title: "Localities",
-      source: vectorSource,
-      style: function(feature, resolution) { return defaultStyle(feature, resolution); }
+    }).complete(function() {
+      var layerData = new ol.layer.Vector({
+        title: "Localities",
+        source: vectorSource,
+        style: function (feature, resolution) {
+          return defaultStyle(feature, resolution);
+        }
+      });
+
+      olMap.addLayer(layerData);
     });
-
-    olMap.addLayer(layerData);
-  });
+  }
 });

@@ -5,6 +5,7 @@ import info.kivid.model.*;
 import info.kivid.service.helper.ApiConnectionHelper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -77,7 +78,7 @@ public class RockService {
             return apiResultWrapper.getResults();
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new ArrayList<>();
         }
     }
 
