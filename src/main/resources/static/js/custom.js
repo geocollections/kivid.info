@@ -1,7 +1,7 @@
 $(function() {
 
   //TODO: replace 1 with rock id when rock location works on API side
-  $.getJSON('/rock/1/locations', function(locations) {
+  $.getJSON('/rock/228/locations', function(locations) {
 
     var olMap = new ol.Map({
       target: 'map',
@@ -46,10 +46,10 @@ $(function() {
     });
 
     for (var i = 0; i < locations.length; i++) {
-      var centroidLL = ol.proj.transform([Number(locations[i].longitude), Number(locations[i].latitude)], 'EPSG:4326', 'EPSG:3857');
+      var centroidLL = ol.proj.transform([Number(locations[i].locality__longitude), Number(locations[i].locality__latitude)], 'EPSG:4326', 'EPSG:3857');
       var centroidPoint = new ol.geom.Point(centroidLL);
       var feature = new ol.Feature({ geometry: centroidPoint });
-      feature.name = locations[i].name;
+      feature.name = locations[i].locality__locality;
       feature.fid = locations[i].id;
       vectorSource.addFeature(feature);
     }

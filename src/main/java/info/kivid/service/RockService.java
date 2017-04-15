@@ -1,10 +1,7 @@
 package info.kivid.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import info.kivid.model.ApiResultWrapper;
-import info.kivid.model.ImageApiResult;
-import info.kivid.model.RockApiResultWrapper;
-import info.kivid.model.RockApiResult;
+import info.kivid.model.*;
 import info.kivid.service.helper.ApiConnectionHelper;
 import org.springframework.stereotype.Service;
 
@@ -62,6 +59,21 @@ public class RockService {
             String resultString = apiConnectionHelper.makeRequest(requestString);
             ObjectMapper objectMapper = new ObjectMapper();
             ApiResultWrapper<ImageApiResult> apiResultWrapper = objectMapper.readValue(resultString, ApiResultWrapper.class);
+            return apiResultWrapper.getResults();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<LocationApiResult> getRockLocations(String id) {
+
+        ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
+        String requestString = "rock_locality/?rock_id=" + id + "&format=json";
+        try {
+            String resultString = apiConnectionHelper.makeRequest(requestString);
+            ObjectMapper objectMapper = new ObjectMapper();
+            ApiResultWrapper<LocationApiResult> apiResultWrapper = objectMapper.readValue(resultString, ApiResultWrapper.class);
             return apiResultWrapper.getResults();
         } catch (Exception e) {
             e.printStackTrace();
