@@ -21,7 +21,7 @@ public class RocksApplication extends WebMvcConfigurerAdapter {
 	@Bean
 	public LocaleResolver localeResolver() {
 		SessionLocaleResolver slr = new SessionLocaleResolver();
-		slr.setDefaultLocale(Locale.ENGLISH);
+		slr.setDefaultLocale(new Locale("et","ET"));
 		return slr;
 	}
 
@@ -33,7 +33,8 @@ public class RocksApplication extends WebMvcConfigurerAdapter {
 	}
 
 	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
+	public void addInterceptors(InterceptorRegistry registry)
+	{
 		registry.addInterceptor(localeChangeInterceptor());
 	}
 }
