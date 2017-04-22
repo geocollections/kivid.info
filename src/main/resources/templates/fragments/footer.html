@@ -5,13 +5,22 @@
     </head>
     <body>
         <footer th:fragment="footer">
-            <div class="row">
-                <div class="col-md-12">
-                    <p th:text="#{useful_links}"></p>
-                    <p><a href="http://mindat.org">mindat.org</a></p>
-                    <p><a href="http://fossiilid.info" >fossiilid.info</a></p>
-                    <p><a href="http://geokogud.info">geokogud.info</a></p>
-                </div>
+             <div class="panel panel-default">
+
+                 <div class="panel-body">
+                     <table class="table">
+                         <tbody>
+                         <tr>
+                             <td><h5 th:text="#{useful_links}"></h5></td>
+                             <td><a href="http://mindat.org"> mindat.org</a></td>
+                             <td><a href="http://fossiilid.info"> fossiilid.info </a></td>
+                             <td><a href="http://geokogud.info"> geokogud.info </a></td>
+                             <td></td>
+                             <td></td>
+                         </tr>
+                         </tbody>
+                     </table>
+                 </div>
             </div>
         </footer>
     </body>
