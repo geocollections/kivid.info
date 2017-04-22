@@ -133,4 +133,18 @@ public class RockService {
             return null;
         }
     }
+
+    public List<RockNameSearchResult> searchName(String searchString) {
+        ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
+        String requestString = "rock/?name__icontains=" + searchString + "&fields=id,name&format=json";
+        try {
+            String resultString = apiConnectionHelper.makeRequest(requestString);
+            ObjectMapper objectMapper = new ObjectMapper();
+            ApiResultWrapper<RockNameSearchResult> apiResultWrapper = objectMapper.readValue(resultString, ApiResultWrapper.class);
+            return apiResultWrapper.getResults();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
 }
