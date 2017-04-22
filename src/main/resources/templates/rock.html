@@ -7,38 +7,30 @@
         <div class="container">
             <div class="jumbotron">
                 <div class="row">
-                    <div class="col-md-6">
 
-                        <div th:if="${(param.lang != null) and (param.lang[0] == 'en')}">
-                            <h2 th:text="${rock.name_en}"></h2>
-                        </div>
-                        <div th:if="${(param.lang == null) or (param.lang[0] == 'et')}">
-                            <h2 th:text="${rock.name}"></h2>
+                    <div class="col-md-6">
+                        <div>
+                            <h2 th:text="${rock.name_en}" th:unless="${#locale.getLanguage()== 'et'}"></h2>
+                            <h2 th:text="${rock.name}" th:unless="${#locale.getLanguage()== 'en'}"></h2>
                         </div>
 
                         <p><a th:href="${#httpServletRequest.requestURI}+'/gallery'" th:text="#{gallery}"></a></p>
 
                         <p th:text="${rock.formula}"></p><!--<p th:text="${rock.formula_html}"></p>-->
 
-                        <div th:if="${(param.lang != null) and (param.lang[0] == 'en')}">
-                            <p th:text="${rock.description_en}">N/A</p>
+                        <div>
+                            <p th:text="${rock.description_en}" th:unless="${#locale.getLanguage()== 'et'}">N/A</p>
+                            <p th:text="${rock.description}" th:unless="${#locale.getLanguage()== 'en'}"></p>
                         </div>
-                        <div th:if="${(param.lang == null) or (param.lang[0] == 'et')}">
-                            <p th:text="${rock.description}"></p>
+
+                        <div>
+                            <p th:text="${rock.description_in_estonia_en}" th:unless="${#locale.getLanguage()== 'et'}"></p>
+                            <p th:text="${rock.description_in_estonia}" th:unless="${#locale.getLanguage()== 'en'}"></p>
                         </div>
 
                         <div th:if="${(param.lang != null) and (param.lang[0] == 'en')}">
-                            <p th:text="${rock.description_in_estonia_en}"></p>
-                        </div>
-                        <div th:if="${(param.lang == null) or (param.lang[0] == 'et')}">
-                            <p th:text="${rock.description_in_estonia}"></p>
-                        </div>
-
-                        <div th:if="${(param.lang != null) and (param.lang[0] == 'en')}">
-                            <p th:text="${rock.description_usage_en}"></p>
-                        </div>
-                        <div th:if="${(param.lang == null) or (param.lang[0] == 'et')}">
-                            <p th:text="${rock.description_usage}"></p>
+                            <p th:text="${rock.description_usage_en}" th:unless="${#locale.getLanguage()== 'et'}"></p>
+                            <p th:text="${rock.description_usage}" th:unless="${#locale.getLanguage()== 'en'}"></p>
                         </div>
                     </div>
 
@@ -60,8 +52,8 @@
                         </div>
                     </div>
                 </div>
-                <footer th:replace="fragments/footer :: footer"></footer>
             </div>
+            <footer th:replace="fragments/footer :: footer"></footer>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
