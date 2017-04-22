@@ -54,19 +54,22 @@ public class RockService {
 
     public List<TreeApiResult> getRockTree(String id) {
         ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
+        Set<TreeApiResult> fullResults = new HashSet<TreeApiResult>();
         Set<TreeApiResult> results = new HashSet<TreeApiResult>();
 
         try {
-            results.addAll(getTreeResults(apiConnectionHelper, id));
+            List<TreeApiResult> ress = getTreeResults(apiConnectionHelper, id);
+            results.addAll(ress);
+            fullResults.addAll(ress);
 
-            if(!CollectionUtils.isEmpty(results)) {
-                for(TreeApiResult res: results) {
+            if(!CollectionUtils.isEmpty(ress)) {
+                for(TreeApiResult res: ress) {
                     if(!res.getParent_id().equals(id)) {
-                        results.addAll(getTreeResults(apiConnectionHelper, res.getParent_id()));
+                        fullResults.addAll(getTreeResults(apiConnectionHelper, res.getParent_id()));
                     }
                 }
             }
-            return new ArrayList<TreeApiResult>(results);
+            return new ArrayList<TreeApiResult>(fullResults);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
