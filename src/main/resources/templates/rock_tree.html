@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title th:text="#{title}"></title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css" />
+    <link href="/css/jquery.fancybox.min.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="/css/vis.css"/>
+    <script src="/js/vis.js"></script>
+    <style type="text/css">
+        #mynetwork {
+            width: 600px;
+            height: 400px;
+            border: 1px solid lightgray;
+        }
+    </style>
+
+</head>
+
+<body th:attr="data-has-map=${rockId}">
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container">
+    <div class="row">
+        <div id="mynetwork"></div>
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/custom.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    var tree = /*[[${rockTree}]]*/ 'Sebastian';
+    /*]]>*/
+    // create an array with nodes
+
+    var nds = [];
+    var edgs = [];
+    tree.forEach(function(element) {
+        var node = {id: element.rock_id, label: element.rock__name};
+        var edge = {from: element.rock_id, to: element.parent_id};
+        nds.push(node);
+        edgs.push(edge);
+    });
+    var nodes = new vis.DataSet(nds);
+
+    // create an array with edges
+    var edges = new vis.DataSet(edgs);
+
+    // create a network
+    var container = document.getElementById('mynetwork');
+
+    // provide the data in the vis format
+    var data = {
+        nodes: nodes,
+        edges: edges
+    };
+    var options = {};
+
+    // initialize your network!
+    var network = new vis.Network(container, data, options);
+</script>
+</body>
+</html>

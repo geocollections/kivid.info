@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import info.kivid.model.*;
 import info.kivid.service.helper.ApiConnectionHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 @Service
@@ -50,6 +50,44 @@ public class RockService {
             }
         }
         return initial;
+    }
+
+    public List<TreeApiResult> getRockTree(String id) {
+        ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
+        Set<TreeApiResult> results = new HashSet<TreeApiResult>();
+
+        try {
+            results.addAll(getTreeResults(apiConnectionHelper, id));
+
+            if(!CollectionUtils.isEmpty(results)) {
+                for(TreeApiResult res: results) {
+                    if(!res.getParent_id().equals(id)) {
+                        results.addAll(getTreeResults(apiConnectionHelper, res.getParent_id()));
+                    }
+                }
+            }
+            return new ArrayList<TreeApiResult>(results);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private List<TreeApiResult> getTreeResults(ApiConnectionHelper helper, String id) {
+        String reqStringBegin = "rock_tree/?fields=rock_id,parent_id,rock__name&multi_search=value:";
+        String reqStringEnd = ";fields:rock_id,parent_id;lookuptype:exact&format=json";
+        String requestString = reqStringBegin + id + reqStringEnd;
+
+        try {
+            String resultString = helper.makeRequest(requestString);
+            ObjectMapper objectMapper = new ObjectMapper();
+            TreeApiResultWrapper apiResultWrapper = objectMapper.readValue(resultString, TreeApiResultWrapper.class);
+
+            return Arrays.asList(apiResultWrapper.getResults());
+        } catch(Exception e) {
+            e.printStackTrace();
+            return new ArrayList<TreeApiResult>();
+        }
     }
 
     public List<ImageApiResult> getRockGallery(String id) {
