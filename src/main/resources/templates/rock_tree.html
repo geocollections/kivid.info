@@ -37,12 +37,12 @@
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
     <div class="row">
-        <div id="mynetwork"></div>
-        <table>
+        <div id="mynetwork" style="margin-top: 80px;"></div>
+        <table style="margin: 10px;">
             <tr>
-                <th>ID</th>
-                <th>parent</th>
-                <th>name</th>
+                <th style="padding: 15px;">ID</th>
+                <th style="padding: 15px;">parent</th>
+                <th style="padding: 15px;">name</th>
             </tr>
             <tr th:each="item : ${rockTree}">
                 <td th:text="${item.rock_id}" style="padding: 15px;">Onions</td>
@@ -60,7 +60,7 @@
 <script src="/js/search.js"></script>
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
-    var tree = /*[[${rockTree}]]*/ 'Sebastian';
+    var tree = /*[[${rockTree}]]*/ undefined;
     /*]]>*/
     // create an array with nodes
 
@@ -90,7 +90,11 @@
         nodes: nodes,
         edges: edges
     };
-    var options = {};
+    var options = {
+        nodes: {
+            shape: 'box'
+        }
+    };
 
     // initialize your network!
     var network = new vis.Network(container, data, options);

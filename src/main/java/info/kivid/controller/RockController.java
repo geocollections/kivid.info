@@ -24,6 +24,9 @@ public class RockController {
         RockApiResult rockApiResult = rockService.getRock(id);
         if (rockApiResult != null) {
             model.addAttribute("rock", rockApiResult);
+
+            List<TreeApiResult> tree = rockService.getRockTree(id);
+            model.addAttribute("rockTree", tree);
             return "rock";
         }
         return "rock_error";
