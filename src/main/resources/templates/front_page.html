@@ -10,7 +10,13 @@
                     <div class="col-md-6">
                         <img src="images/g2tsta.png" alt="" height="400" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" th:unless=" ${rocksText==null}">
+                        <h2 th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
+                        <h2 th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
+                        <p  th:text="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></p>
+                        <p  th:text="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></p>
+                    </div>
+                    <div class="col-md-6" th:if="${rocksText==null}">
                         <h2 th:text="#{front_page.title}"></h2>
                         <p th:text="#{front_page.introduction}"></p>
                     </div>

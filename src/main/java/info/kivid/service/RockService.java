@@ -1,5 +1,7 @@
 package info.kivid.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import info.kivid.model.*;
 import info.kivid.service.helper.ApiConnectionHelper;
@@ -109,7 +111,6 @@ public class RockService {
     }
 
     public List<LocationApiResult> getRockLocations(String id) {
-
         ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
         String requestString = "rock_locality/?rock_id=" + id + "&format=json";
         try {
@@ -150,4 +151,23 @@ public class RockService {
             return new ArrayList<>();
         }
     }
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public IntroductionText getText(String id) {
+
+        ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
+        String requestString = "webpages/"+id +"?format=json";
+        try {
+            String resultString = apiConnectionHelper.makeRequest(requestString);
+            ObjectMapper objectMapper = new ObjectMapper();
+            ApiResultWrapper<IntroductionText> result = objectMapper.readValue(resultString, new TypeReference <ApiResultWrapper<IntroductionText>>() {});
+
+    return result.getResults().get(0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 }
