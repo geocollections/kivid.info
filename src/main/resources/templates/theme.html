@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"></head>
+
+<body>
+<div class="container">
+    <nav th:replace="fragments/navbar :: navbar"></nav>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <p><a th:href="${#httpServletRequest.requestURI}+'/gallery'" th:text="#{gallery}"></a></p>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6" th:unless=" ${rocksText==null}">
+                    <h2 th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
+                    <h2 th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
+                    <p  th:text="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></p>
+                    <p  th:text="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></p>
+                </div>
+                <div class="col-md-6" th:if="${rocksText==null} and ${id==60}">
+                    <h2 th:text="#{minerals}"></h2>
+                    <p th:text="#{minerals.introduction}"></p>
+                </div>
+                <div class="col-md-6" th:if="${rocksText==null} and ${id==61}">
+                    <h2 th:text="#{rocks}"></h2>
+                    <p th:text="#{rocks.introduction}"></p>
+                </div>
+                <div class="col-md-6" th:if="${rocksText==null} and ${id==62}">
+                    <h2 th:text="#{natural_resources}"></h2>
+                    <p th:text="#{natural_resources.introduction}"></p>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="fragments/footer :: footer"></footer>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/search.js"></script>
+</body>
+</html>

@@ -18,7 +18,6 @@ public class RootController {
     public String rocks(Model model) {
         IntroductionText introductionText;
         introductionText = rockService.getText("59");
-        System.out.println(introductionText.getContent_et());
         if(introductionText!=null) {
             model.addAttribute("rocksText", introductionText);
             return "front_page";
