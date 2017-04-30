@@ -14,8 +14,8 @@
                 <div class="col-md-6" th:unless=" ${rocksText==null}">
                     <h2 th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
                     <h2 th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
-                    <p  th:text="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></p>
-                    <p  th:text="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></p>
+                    <p  th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></p>
+                    <p  th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></p>
                 </div>
                 <div class="col-md-6" th:if="${rocksText==null} and ${id==60}">
                     <h2 th:text="#{minerals}"></h2>
