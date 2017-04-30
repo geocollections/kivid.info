@@ -8,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class SearchController {
@@ -18,9 +21,11 @@ public class SearchController {
     private RockService rockService;
 
     @GetMapping("/search")
-    public String searchForm(Model model, @ModelAttribute SearchForm searchForm) {
+    public String searchForm(Model model, @ModelAttribute SearchForm searchForm, HttpServletRequest httpServletRequest) {
         if (searchForm.getSearchString() != null) {
-            List<RockApiResult> rocks = rockService.search(searchForm.getSearchString());
+            SessionLocaleResolver slr = new SessionLocaleResolver();
+            Locale locale = slr.resolveLocale(httpServletRequest);
+            List<RockApiResult> rocks = rockService.search(searchForm.getSearchString(), locale.getLanguage());
             model.addAttribute("rocks", rocks);
         }
         return "search";

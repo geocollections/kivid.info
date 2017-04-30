@@ -31,8 +31,10 @@
                             <tbody>
                                 <tr th:each="rock : ${rocks}" th:href="'/rock/' + ${rock.id}" class="clickableRow">
                                     <td th:text="${rock.id}"></td>
-                                    <td th:text="${rock.name}"></td>
-                                    <td th:text="${rock.description}"></td>
+                                    <td th:text="${rock.name}" th:unless="${#locale.getLanguage()=='en'}"></td>
+                                    <td th:text="${rock.name_en}" th:if="${#locale.getLanguage()=='en'}"></td>
+                                    <td th:text="${rock.description}" th:unless="${#locale.getLanguage()=='en'}"></td>
+                                    <td th:text="${rock.description_en}" th:if="${#locale.getLanguage()=='en'}"></td>
                                     <td th:text="${rock.rock_type__name}"></td>
                                 </tr>
                             </tbody>

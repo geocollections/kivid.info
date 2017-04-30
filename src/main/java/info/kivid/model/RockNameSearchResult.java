@@ -5,6 +5,7 @@ public class RockNameSearchResult {
 
     private String id;
     private String name;
+    private String name_en;
 
     public String getId() {
         return id;
@@ -20,5 +21,13 @@ public class RockNameSearchResult {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName_en() {
+        return name_en;
+    }
+
+    public void setName_en(String name_en) {
+        this.name_en = name_en;
     }
 }

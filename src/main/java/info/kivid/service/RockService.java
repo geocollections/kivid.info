@@ -124,9 +124,12 @@ public class RockService {
         }
     }
 
-    public List<RockApiResult> search(String searchString) {
+    public List<RockApiResult> search(String searchString, String language) {
         ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
         String requestString = "rock/?name__icontains=" + searchString + "&format=json";
+        if (language.equalsIgnoreCase("en")) {
+            requestString = "rock/?name_en__icontains=" + searchString + "&format=json";
+        }
         try {
             String resultString = apiConnectionHelper.makeRequest(requestString);
             ObjectMapper objectMapper = new ObjectMapper();
@@ -138,9 +141,12 @@ public class RockService {
         }
     }
 
-    public List<RockNameSearchResult> searchName(String searchString) {
+    public List<RockNameSearchResult> searchName(String searchString, String language) {
         ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
-        String requestString = "rock/?name__icontains=" + searchString + "&fields=id,name&format=json";
+        String requestString = "rock/?name__icontains=" + searchString + "&fields=id,name,name_en&format=json";
+        if (language.equalsIgnoreCase("en")) {
+            requestString = "rock/?name_en__icontains=" + searchString + "&fields=id,name,name_en&format=json";
+        }
         try {
             String resultString = apiConnectionHelper.makeRequest(requestString);
             ObjectMapper objectMapper = new ObjectMapper();

@@ -28,7 +28,7 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" th:text="${#locale.getLanguage()}" role="button" aria-expanded="false"><span class="caret"></span></a>
+                            <a id="languageButton" href="#" class="dropdown-toggle" data-toggle="dropdown" th:text="${#locale.getLanguage()}" role="button" aria-expanded="false"><span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a th:class="lang" th:href="${#httpServletRequest.requestURI}+'?lang=et'">et - Eesti</a></li>
                                 <li><a th:class="lang" th:href="${#httpServletRequest.requestURI}+'?lang=en'">en - English</a></li>

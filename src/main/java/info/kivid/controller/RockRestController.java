@@ -8,8 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 public class RockRestController {
@@ -23,7 +26,9 @@ public class RockRestController {
     }
 
     @RequestMapping(value = "/rock/search/{searchString}", method = RequestMethod.GET)
-    public List<RockNameSearchResult> getRockNames(@PathVariable("searchString") String searchString) {
-        return rockService.searchName(searchString);
+    public List<RockNameSearchResult> getRockNames(@PathVariable("searchString") String searchString, HttpServletRequest httpServletRequest) {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        Locale locale = slr.resolveLocale(httpServletRequest);
+        return rockService.searchName(searchString, locale.getLanguage());
     }
 }

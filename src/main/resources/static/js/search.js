@@ -6,7 +6,11 @@ $(function() {
       $.getJSON('/rock/search/' + request.term, function (results) {
         var data = [];
         results.forEach(function(result) {
-          data.push({label: result.name, id: result.id});
+          var label = result.name;
+          if ($('#languageButton').text() === 'en') {
+            label = result.name_en;
+          }
+          data.push({label: label, id: result.id});
         });
         response(data);
       });
