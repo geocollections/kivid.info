@@ -8,7 +8,8 @@
             <div class="jumbotron">
                 <div class="row">
                     <div class="col-md-6">
-                        <img src="images/g2tsta.png" alt="" height="400" />
+                       <!-- <img src="images/g2tsta.png" alt="" height="400" />-->
+                        <div id="mynetwork" style="width: 400px; height: 400px;"></div>
                     </div>
                     <div class="col-md-6" th:unless=" ${rocksText==null}">
                         <h2 th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
@@ -36,5 +37,61 @@
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/jquery-ui.min.js"></script>
         <script src="/js/search.js"></script>
+        <link rel="stylesheet" href="/css/vis.css"/>
+        <script src="/js/vis.js"></script>
+        <script type="text/javascript" th:inline="javascript">
+            /*<![CDATA[*/
+            var lang = /*[[${#locale.getLanguage()}]]*/ 'et';
+            /*]]>*/
+
+            var nodes = new vis.DataSet([
+                {id: 1, label: 'Kivid', group: 'main'},
+                {id: 2, label: 'Kivimid'},
+                {id: 3, label: 'Mineraalid'},
+                {id: 4, label: 'Maavarad'}
+            ]);
+            if(lang === 'en') {
+                nodes = new vis.DataSet([
+                    {id: 1, label: 'Stones', group: 'main'},
+                    {id: 2, label: 'Rocks'},
+                    {id: 3, label: 'Minerals'},
+                    {id: 4, label: 'Resources'}
+                ]);
+            }
+
+            var edges = new vis.DataSet([
+                {from: 1, to: 2},
+                {from: 1, to: 3},
+                {from: 1, to: 4}
+            ]);
+
+
+            // create a network
+            var container = document.getElementById('mynetwork');
+
+            // provide the data in the vis format
+            var data = {
+                nodes: nodes,
+                edges: edges
+            };
+            var options = {
+                nodes:{
+                    shape: 'circularImage',
+                    image: "images/g2tsta_small.png",
+                    color: '#ffffff',
+                    font: {
+                        color: '#c8c8c8'
+                    }
+                },
+                groups:{
+                    main:{
+                        size:50
+                    }
+                }
+            };
+
+            // initialize your network!
+            var network = new vis.Network(container, data, options);
+        </script>
     </body>
 </html>
