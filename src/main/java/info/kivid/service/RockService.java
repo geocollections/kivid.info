@@ -166,8 +166,7 @@ public class RockService {
             String resultString = apiConnectionHelper.makeRequest(requestString);
             ObjectMapper objectMapper = new ObjectMapper();
             ApiResultWrapper<IntroductionText> result = objectMapper.readValue(resultString, new TypeReference <ApiResultWrapper<IntroductionText>>() {});
-
-    return result.getResults().get(0);
+            return result.getResults().get(0);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,8 +4,8 @@
         <meta charset="UTF-8"></meta>
     </head>
     <body>
-        <nav th:fragment="navbar" class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
+         <nav th:fragment="navbar" class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid" >
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="icon-bar"></span>
@@ -27,9 +27,12 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a th:href="${#httpServletRequest.requestURI}+'?inEst=true'" th:text="#{in_est}"></a></li>
+                        <li><a th:href="${#httpServletRequest.requestURI}+'?inEst=false'" th:text="#{in_world}"></a></li>
                         <li class="dropdown">
-                            <a id="languageButton" href="#" class="dropdown-toggle" data-toggle="dropdown" th:text="${#locale.getLanguage()}" role="button" aria-expanded="false"><span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
+                            <a id="languageButton" href="#" class="dropdown-toggle" data-toggle="dropdown"  role="button" aria-expanded="false"> <span th:text="${#locale.getLanguage()}" th:remove="tag"></span>
+                                <b class="caret"></b></a>
+                            <ul class="dropdown-menu" role="menu" style="margin-right: 10px">
                                 <li><a th:class="lang" th:href="${#httpServletRequest.requestURI}+'?lang=et'">et - Eesti</a></li>
                                 <li><a th:class="lang" th:href="${#httpServletRequest.requestURI}+'?lang=en'">en - English</a></li>
                             </ul>
@@ -37,6 +40,6 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+         </nav>
     </body>
 </html>
