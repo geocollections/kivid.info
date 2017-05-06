@@ -1,30 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+<head th:replace="fragments/header :: header">
 
-    <title th:text="#{title}"></title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css" />
-    <link href="/css/jquery.fancybox.min.css" rel="stylesheet" />
-
-    <link href="/css/custom.css" rel="stylesheet"/>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <link rel="stylesheet" href="/css/vis.css"/>
-    <script src="/js/vis.js"></script>
 </head>
 
 <body th:attr="data-has-map=${rockId}">
@@ -40,18 +17,19 @@
         </div>
 
         <div class="col-md-12">
-        <table class="padded-table">
-            <tr>
-                <th class="padded-cell">ID</th>
-                <th class="padded-cell">parent</th>
-                <th class="padded-cell">name</th>
-            </tr>
-            <tr th:each="item : ${rockTree}">
-                <td th:text="${item.rock_id}" class="padded-cell">Onions</td>
-                <td th:text="${item.parent_id}" class="padded-cell">2.41</td>
-                <td th:text="${item.rock__name}" class="padded-cell">yes</td>
-            </tr>
-        </table>
+            <button th:text="#{rock_tree_table_button}" id="tableButton"></button>
+            <table class="padded-table" id="treeTable">
+                <tr>
+                    <th class="padded-cell">ID</th>
+                    <th class="padded-cell">parent</th>
+                    <th class="padded-cell">name</th>
+                </tr>
+                <tr th:each="item : ${rockTree}">
+                    <td th:text="${item.rock_id}" class="padded-cell">N/A</td>
+                    <td th:text="${item.parent_id}" class="padded-cell">N/A</td>
+                    <td th:text="${item.rock__name}" class="padded-cell">N/A</td>
+                </tr>
+            </table>
         </div>
     </div>
     <footer th:replace="fragments/footer :: footer"></footer>
@@ -59,13 +37,15 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/js/jquery-ui.min.js"></script>
 <script src="/js/search.js"></script>
+
+<link href="/css/vis.min.css" rel="stylesheet" />
+<script src="/js/vis.min.js"></script>
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
     var tree = /*[[${rockTree}]]*/ undefined;
+    var lang = /*[[${#locale.getLanguage()}]]*/ 'et';
     /*]]>*/
-    // create an array with nodes
 
     var nds = [];
     var edgs = [];
@@ -80,26 +60,22 @@
         edgs.push(edge);
         extantNodes.push(element.rock_id);
     });
+
     var nodes = new vis.DataSet(nds);
-
-    // create an array with edges
     var edges = new vis.DataSet(edgs);
-
-    // create a network
-    var container = document.getElementById('rocktree-network');
-
-    // provide the data in the vis format
     var data = {
         nodes: nodes,
         edges: edges
     };
+
+    var container = document.getElementById('rocktree-network');
+
     var options = {
         nodes: {
             shape: 'box'
         }
     };
 
-    // initialize your network!
     var network = new vis.Network(container, data, options);
 
     network.on("click", function (params) {
@@ -114,12 +90,32 @@
             var hostname = window.location.hostname;
             //uncomment the next line to make it work on localhost. USE WITH CAUTION.
             //hostname = hostname + ":" + window.location.port;
-            var nodeLink = hostname + "/rock/" + nodeId + "/tree";
+            var nodeLink = hostname + "/rock/" + nodeId;
+            var nodeTreeLink = hostname + "/rock/" + nodeId + "/tree";
 
-            document.getElementById('nodeDataContainer').innerHTML = nodeId + " " + nodeName +
-            '<br/><a id="selectedLink" href="">Link</a>';
+            var nodeData = "";
+            if (lang === 'en') {
+               nodeData = 'Rock id: ' + nodeId +
+                       '<br />Rock name: ' + nodeName +
+                       '<br /><a id="selectedLink" href="">Link to rock</a>' +
+                       '<br /><a id="selectedTreeLink" href="">Link to rock\'s net</a>';
+            } else {
+                nodeData = 'Kivi id: ' + nodeId +
+                        '<br />Kivi nimi: ' + nodeName +
+                        '<br /><a id="selectedLink" href="">Link kivile</a>' +
+                        '<br /><a id="selectedTreeLink" href="">Link kivi seostele</a>';
+            }
+
+            document.getElementById('nodeDataContainer').innerHTML = nodeData;
             document.getElementById('selectedLink').href = nodeLink;
+            document.getElementById('selectedTreeLink').href = nodeTreeLink;
         }
+    });
+
+    $("#treeTable").hide(); //should be hidden in the beginning
+
+    $("#tableButton").click(function(){
+        $("#treeTable").toggle();
     });
 </script>
 </body>

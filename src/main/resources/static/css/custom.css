@@ -73,10 +73,19 @@
 }
 
 .padded-table {
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 .padded-cell {
     padding: 15px;
+}
+
+#tableButton {
+    border: 1px solid lightgray;
+    margin: 20px 0 10px;
+    padding: 10px;
+    background-color: inherit;
+    color: inherit;
+    border-radius: 10px;
 }
 
