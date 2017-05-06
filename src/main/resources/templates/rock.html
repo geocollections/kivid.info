@@ -35,11 +35,11 @@
                     </div>
 
                     <div class="col-md-6">
-                        <p style="padding-top: 20px;"><a th:href="${#httpServletRequest.requestURI}+'/map'" th:text="#{map}"></a></p>
-                        <div id="map" style="height: 400px; width: 100%; padding-bottom: 20px;"></div>
+                        <p class="top-clear-20"><a th:href="${#httpServletRequest.requestURI}+'/map'" th:text="#{map}"></a></p>
+                        <div id="map" class="unitpage-illustrative"></div>
 
-                        <p style="padding-top: 20px;"><a th:href="${#httpServletRequest.requestURI}+'/tree'" th:text="#{tree}"></a></p>
-                        <div id="mynetwork" style="height: 400px; width: 100%; padding-bottom: 20px;"></div>
+                        <p class="top-clear-20"><a th:href="${#httpServletRequest.requestURI}+'/tree'" th:text="#{tree}"></a></p>
+                        <div id="mynetwork" class="unitpage-illustrative"></div>
                     </div>
 
                     <div class="col-md-12">
@@ -100,7 +100,11 @@
                 nodes: nodes,
                 edges: edges
             };
-            var options = {};
+            var options = {
+                nodes: {
+                    shape: 'box'
+                }
+            };
 
             // initialize your network!
             var network = new vis.Network(container, data, options);

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css" />
     <link href="/css/jquery.fancybox.min.css" rel="stylesheet" />
 
+    <link href="/css/custom.css" rel="stylesheet"/>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -23,14 +25,6 @@
 
     <link rel="stylesheet" href="/css/vis.css"/>
     <script src="/js/vis.js"></script>
-    <style type="text/css">
-        #mynetwork {
-            width: 100%;
-            height: 400px;
-            border: 1px solid lightgray;
-        }
-    </style>
-
 </head>
 
 <body th:attr="data-has-map=${rockId}">
@@ -38,24 +32,24 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <div id="mynetwork" style="margin-top: 80px;"></div>
+            <div id="rocktree-network" class="top-clear-80"></div>
         </div>
-        <div class="col-md-4"  style="margin-top: 80px;">
+        <div class="col-md-4 top-clear-80">
             <p th:text="#{selected_node}"></p>
             <p id="nodeDataContainer"></p>
         </div>
 
         <div class="col-md-12">
-        <table style="margin: 10px;">
+        <table class="padded-table">
             <tr>
-                <th style="padding: 15px;">ID</th>
-                <th style="padding: 15px;">parent</th>
-                <th style="padding: 15px;">name</th>
+                <th class="padded-cell">ID</th>
+                <th class="padded-cell">parent</th>
+                <th class="padded-cell">name</th>
             </tr>
             <tr th:each="item : ${rockTree}">
-                <td th:text="${item.rock_id}" style="padding: 15px;">Onions</td>
-                <td th:text="${item.parent_id}" style="padding: 15px;">2.41</td>
-                <td th:text="${item.rock__name}" style="padding: 15px;">yes</td>
+                <td th:text="${item.rock_id}" class="padded-cell">Onions</td>
+                <td th:text="${item.parent_id}" class="padded-cell">2.41</td>
+                <td th:text="${item.rock__name}" class="padded-cell">yes</td>
             </tr>
         </table>
         </div>
@@ -92,7 +86,7 @@
     var edges = new vis.DataSet(edgs);
 
     // create a network
-    var container = document.getElementById('mynetwork');
+    var container = document.getElementById('rocktree-network');
 
     // provide the data in the vis format
     var data = {
