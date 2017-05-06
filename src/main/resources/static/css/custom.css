@@ -11,6 +11,14 @@
     padding-right: 5%;
 }
 
+.carousel-control.left,.carousel-control.right {
+    background-image:none;
+}
+
+.img-responsive {
+    height: 140px;
+}
+
 .top-clear-20 {
     padding-top: 20px;
 }
