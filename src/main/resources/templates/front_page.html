@@ -10,8 +10,10 @@
             <div class="jumbotron" >
                 <div class="row">
                     <div class="col-md-6">
-                       <!-- <img src="images/g2tsta.png" alt="" height="400" />-->
-                        <div id="mynetwork" style="width: 400px; height: 400px;"></div>
+                        <div id="networkcontainer" style="width: 100%; padding-top: 100%;position: relative;">
+                            <div id="mynetwork" style="position: absolute;top: 0;left: 0;bottom: 0;right: 0;"></div>
+                        </div>
+
                     </div>
                     <div class="col-md-6"  th:unless=" ${rocksText==null}">
                             <h2 th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
@@ -24,13 +26,6 @@
                             <p th:text="#{front_page.introduction}"></p>
                     </div>
                 </div>
-                <!--<div class="row">-->
-                    <!--<div class="col-md-12">-->
-                        <!--<a href="/rocks"><img alt="" style="width: 200px; height: 200px;" src="images/g2tsta.png" /></a>-->
-                        <!--<a href="/minerals"><img alt="" style="width: 200px; height: 200px;" src="images/general_mineral.jpg" /></a>-->
-                        <!--<a href="/resources"><img alt="" style="width: 200px; height: 200px;" src="images/g1.jpg" /></a>-->
-                    <!--</div>-->
-                <!--</div>-->
             </div>
             <footer th:replace="fragments/footer :: footer"></footer>
         </div>
@@ -47,17 +42,17 @@
             /*]]>*/
 
             var nodes = new vis.DataSet([
-                {id: 1, label: 'Kivid', group: 'main'},
-                {id: 2, label: 'Kivimid'},
-                {id: 3, label: 'Mineraalid'},
-                {id: 4, label: 'Maavarad'}
+                {id: 1, label: 'Kivi', group: 'main'},
+                {id: 2, label: 'Kivim'},
+                {id: 3, label: 'Mineraal'},
+                {id: 4, label: 'Maavara'}
             ]);
             if(lang === 'en') {
                 nodes = new vis.DataSet([
-                    {id: 1, label: 'Stones', group: 'main'},
-                    {id: 2, label: 'Rocks'},
-                    {id: 3, label: 'Minerals'},
-                    {id: 4, label: 'Resources'}
+                    {id: 1, label: 'Stone', group: 'main'},
+                    {id: 2, label: 'Rock'},
+                    {id: 3, label: 'Mineral'},
+                    {id: 4, label: 'Resource'}
                 ]);
             }
 
@@ -66,7 +61,6 @@
                 {from: 1, to: 3},
                 {from: 1, to: 4}
             ]);
-
 
             // create a network
             var container = document.getElementById('mynetwork');
@@ -80,19 +74,28 @@
                 nodes:{
                     shape: 'circularImage',
                     image: "images/g2tsta_small.png",
-                    color: '#ffffff',
+                    color: {
+                        background: 'rgba(255, 255, 255, 0)',
+                        border:'rgba(255, 255, 255, 0)',
+                        highlight: 'rgba(255, 255, 255, 0)'
+                    },
                     font: {
-                        color: '#c8c8c8'
-                    }
+                        color: '#c8c8c8',
+                        size: 20
+                    },
+                    mass: 2, //makes edges long enough
+                    size: 50
+                },
+                edges:{
+                    color:'#f8f8f8'
                 },
                 groups:{
                     main:{
-                        size:50
+                        size:100
                     }
                 }
             };
 
-            // initialize your network!
             var network = new vis.Network(container, data, options);
         </script>
     </body>
