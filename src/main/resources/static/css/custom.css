@@ -80,6 +80,19 @@
     padding: 15px;
 }
 
+.footer {
+    text-align: center;
+}
+
+.footer-smalltext {
+    font-size: 90%;
+}
+
+.footer_image {
+    height:50px;
+    margin:10px
+}
+
 #tableButton {
     border: 1px solid lightgray;
     margin: 20px 0 10px;
