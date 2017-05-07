@@ -13,9 +13,9 @@ $(function() {
       ],
       view: new ol.View({
         center: ol.proj.fromLonLat([25.0136, 58.5953]),
-        zoom: 7,
+        zoom: $('.js-location-context').hasClass('js-in-estonia') ? 7 : 2,
         maxZoom: 16,
-        minZoom: 4
+        minZoom: 2
       })
     });
 

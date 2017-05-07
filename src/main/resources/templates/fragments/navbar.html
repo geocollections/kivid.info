@@ -4,8 +4,8 @@
         <meta charset="UTF-8"></meta>
     </head>
     <body>
-         <nav th:fragment="navbar" class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid" >
+         <nav th:fragment="navbar" class="navbar navbar-default navbar-fixed-top js-location-context" th:classappend="${session.inEstonia == null or session.inEstonia} ? js-in-estonia : ''">
+             <div class="container-fluid" >
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="icon-bar"></span>
@@ -27,8 +27,12 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a th:href="${#httpServletRequest.requestURI}+'?inEst=true'" th:text="#{in_est}"></a></li>
-                        <li><a th:href="${#httpServletRequest.requestURI}+'?inEst=false'" th:text="#{in_world}"></a></li>
+                        <li th:classappend="${session.inEstonia == null or session.inEstonia} ? active : ''">
+                            <a href="#" th:text="#{in_est}" data-in-estonia="true" class="js-set-location-context"></a>
+                        </li>
+                        <li th:classappend="${session.inEstonia != null and !(session.inEstonia)} ? active : ''">
+                            <a href="#" th:text="#{in_world}" data-in-estonia="false" class="js-set-location-context"></a>
+                        </li>
                         <li class="dropdown">
                             <a id="languageButton" href="#" class="dropdown-toggle" data-toggle="dropdown"  role="button" aria-expanded="false"> <span th:text="${#locale.getLanguage()}" th:remove="tag"></span>
                                 <b class="caret"></b></a>
