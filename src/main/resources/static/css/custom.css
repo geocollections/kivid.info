@@ -109,3 +109,13 @@
     border-radius: 10px;
 }
 
+
+.carouselPicture{
+    max-width: 200px;
+    height:auto;
+    display: inline-flex;
+    overflow: inherit;
+    ;
+
+
+}
