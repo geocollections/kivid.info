@@ -1,6 +1,7 @@
 package info.kivid.controller;
 
 import info.kivid.model.RockApiResult;
+import info.kivid.model.RockSynonymSearchResult;
 import info.kivid.model.SearchForm;
 import info.kivid.service.RockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,17 @@ public class SearchController {
     private RockService rockService;
 
     @GetMapping("/search")
-    public String searchForm(Model model, @ModelAttribute SearchForm searchForm, HttpServletRequest httpServletRequest) {
-        if (searchForm.getSearchString() != null) {
+    public String search(Model model, @ModelAttribute SearchForm searchForm, HttpServletRequest httpServletRequest) {
+        if (searchForm.getSearchString() != null && searchForm.getSearchString().length() > 0) {
             SessionLocaleResolver slr = new SessionLocaleResolver();
             Locale locale = slr.resolveLocale(httpServletRequest);
-            List<RockApiResult> rocks = rockService.search(searchForm.getSearchString(), locale.getLanguage());
+            List<RockApiResult> rocks = rockService.search(searchForm, locale.getLanguage());
             model.addAttribute("rocks", rocks);
         }
+        /*if (searchForm.getSearchSynonymString() != null && searchForm.getSearchSynonymString().length() > 0) {
+            List<RockSynonymSearchResult> rocks = rockService.searchSynonyms(searchForm.getSearchSynonymString());
+            model.addAttribute("synonyms", rocks);
+        }*/
         return "search";
     }
 }

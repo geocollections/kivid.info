@@ -14,6 +14,13 @@ import java.util.*;
 @Service
 public class RockService {
 
+    private static final String SEARCH_NAME_REQUEST = "name";
+    private static final String SEARCH_NAME_REQUEST_EN = "name_en";
+    private static final String SEARCH_DESCRIPTION_REQUEST = "description,description_in_estonia,description_usage";
+    private static final String SEARCH_DESCRIPTION_REQUEST_EN = "description_en,description_in_estonia_en,description_usage_en";
+    private static final String SEARCH_FORMULA_REQUEST = "formula,formula_html";
+    private static final String SEARCH_CLASSIFICATION_REQUEST = "rock_type__name,rock_rank__name,stratigraphy__stratigraphy,lithostratigraphy__stratigraphy,stratigraphy__id";
+
     public RockApiResult getRock(String id) {
 
         ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
@@ -124,16 +131,71 @@ public class RockService {
         }
     }
 
-    public List<RockApiResult> search(String searchString, String language) {
+    public List<RockApiResult> search(SearchForm searchForm, String language) {
         ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
-        String requestString = "rock/?name__icontains=" + searchString + "&format=json";
-        if (language.equalsIgnoreCase("en")) {
-            requestString = "rock/?name_en__icontains=" + searchString + "&format=json";
+        String requestString = "rock/?format=json&multi_search=value:" + searchForm.getSearchString() + ";fields:";
+        if (!searchForm.isSearchName() && !searchForm.isSearchDescription() && !searchForm.isSearchFormula() && !searchForm.isSearchClassification()) {
+            requestString = "rock/?format=json&multi_search=value:" + searchForm.getSearchString() + ";fields:name,name_en,description,description_en,description_in_estonia,description_usage,description_in_estonia_en,description_usage_en,formula,formula_html,rock_type__name,rock_rank__name,stratigraphy__stratigraphy,lithostratigraphy__stratigraphy,stratigraphy__id;lookuptype:icontains";
+        } else {
+            if (language.equalsIgnoreCase("en")) {
+                if (searchForm.isSearchName()) {
+                    requestString = requestString.concat(SEARCH_NAME_REQUEST_EN);
+                }
+                if (searchForm.isSearchDescription()) {
+                    if (searchForm.isSearchName()) {
+                        requestString = requestString.concat("," + SEARCH_DESCRIPTION_REQUEST_EN);
+                    } else {
+                        requestString = requestString.concat(SEARCH_DESCRIPTION_REQUEST_EN);
+                    }
+                }
+
+            } else {
+                if (searchForm.isSearchName()) {
+                    requestString = requestString.concat(SEARCH_NAME_REQUEST);
+                }
+                if (searchForm.isSearchDescription()) {
+                    if (searchForm.isSearchName()) {
+                        requestString = requestString.concat("," + SEARCH_DESCRIPTION_REQUEST);
+                    } else {
+                        requestString = requestString.concat(SEARCH_DESCRIPTION_REQUEST);
+                    }
+                }
+            }
+            if (searchForm.isSearchFormula()) {
+                if (searchForm.isSearchName() || searchForm.isSearchDescription()) {
+                    requestString = requestString.concat("," + SEARCH_FORMULA_REQUEST);
+                } else {
+                    requestString = requestString.concat(SEARCH_FORMULA_REQUEST);
+                }
+            }
+            if (searchForm.isSearchClassification()) {
+                if (searchForm.isSearchName() || searchForm.isSearchDescription() || searchForm.isSearchFormula()) {
+                    requestString = requestString.concat("," + SEARCH_CLASSIFICATION_REQUEST);
+                } else {
+                    requestString = requestString.concat(SEARCH_CLASSIFICATION_REQUEST);
+                }
+            }
+            requestString = requestString.concat(";lookuptype:icontains");
         }
         try {
             String resultString = apiConnectionHelper.makeRequest(requestString);
             ObjectMapper objectMapper = new ObjectMapper();
             ApiResultWrapper<RockApiResult> apiResultWrapper = objectMapper.readValue(resultString, ApiResultWrapper.class);
+            return apiResultWrapper.getResults();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<RockSynonymSearchResult> searchSynonyms(String searchString) {
+        ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
+        String requestString = "rock_synonym/?format=json&fields=rock_id,name&name__icontains=" + searchString;
+
+        try {
+            String resultString = apiConnectionHelper.makeRequest(requestString);
+            ObjectMapper objectMapper = new ObjectMapper();
+            ApiResultWrapper<RockSynonymSearchResult> apiResultWrapper = objectMapper.readValue(resultString, ApiResultWrapper.class);
             return apiResultWrapper.getResults();
         } catch (Exception e) {
             e.printStackTrace();

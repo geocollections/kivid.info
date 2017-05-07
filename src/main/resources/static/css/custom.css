@@ -80,6 +80,13 @@
     padding: 15px;
 }
 
+.display-inline-block {
+    display: inline-block;
+}
+
+.padding-right-40 {
+    padding-right: 40px;
+}
 .footer {
     text-align: center;
 }

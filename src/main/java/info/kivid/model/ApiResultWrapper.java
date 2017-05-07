@@ -5,6 +5,7 @@ import java.util.List;
 public class ApiResultWrapper<T> {
 
     private int count;
+    private String page;
     private List<T> results;
 
     public int getCount() {
@@ -13,6 +14,14 @@ public class ApiResultWrapper<T> {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getPage() {
+        return page;
+    }
+
+    public void setPage(String page) {
+        this.page = page;
     }
 
     public List<T> getResults() {
