@@ -5,10 +5,10 @@
 <body>
 <div class="container">
     <nav th:replace="fragments/navbar :: navbar"></nav>
-    <div class="row " style="padding-top: 80px;padding-bottom: 40px">
-        <div th:replace="fragments/gallery2::gallery"></div>
-    </div>
     <div class="jumbotron">
+        <div class="row " style="padding-top: 80px;padding-bottom: 20px">
+            <div th:replace="fragments/gallery::gallery"></div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-6" th:unless=" ${rocksText==null}">
@@ -41,6 +41,7 @@
 <script src="/js/search.js"></script>
 <script src="/js/custom.js"></script>
 <script src="/js/gallery.js"></script>
+<script src="/js/jquery.fancybox.min.js"></script>
 
 </body>
 </html>

@@ -5,6 +5,7 @@ $('#myCarousel').carousel({
     interval: false
 })
 
+/*
 $('.carousel .item').each(function(){
     var next = $(this).next();
     if (!next.length) {
@@ -20,4 +21,4 @@ $('.carousel .item').each(function(){
 
         next.children(':first-child').clone().appendTo($(this));
     }
-});
+});*/

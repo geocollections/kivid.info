@@ -16,7 +16,7 @@
 }
 
 .img-responsive {
-    height: 140px;
+    max-height: 160px;
 }
 
 .top-clear-20 {
@@ -109,13 +109,22 @@
     border-radius: 10px;
 }
 
-
 .carouselPicture{
-    max-width: 200px;
-    height:auto;
-    display: inline-flex;
-    overflow: inherit;
+    object-fit:contain;
     ;
+}
+.carouselControlLeft{
+    bottom:30%;
 
-
+}
+.carouselControlRight{
+    bottom:30%;
+}
+.carouselControlChevLeft{
+    top:10%;
+    left:10%;
+}
+.carouselControlChevRight{
+    top:10%;
+    right:10%;
 }
