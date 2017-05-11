@@ -13,15 +13,23 @@
                             <div id="frontpagenetwork"></div>
                         </div>
                     </div>
-                    <div class="col-md-5"  th:unless=" ${rocksText==null}">
-                            <h2 th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
-                            <h2 th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
-                            <p  th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></p>
-                            <p  th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></p>
-                    </div>
-                    <div class="col-md-5 frontpage-text" th:if="${rocksText==null}">
-                            <h2 th:text="#{front_page.title}"></h2>
-                            <p th:text="#{front_page.introduction}"></p>
+                    <div class="col-md-5 ">
+
+                            <div th:class="frontPage" th:unless=" ${rocksText==null}">
+                                <h2 class="frontPageTitle" th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
+                                <h2 class="frontPageTitle" th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
+                                <blockquote>
+                                <div th:class="frontPageText" th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></div>
+                                <div th:class="frontPageText" th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></div>
+                                </blockquote>
+                            </div>
+                            <div th:class="frontPage" th:if="${rocksText==null}">
+                                <h2 th:class="frontPageTitle" th:text="#{front_page.title}"></h2>
+                                <blockquote>
+                                <p th:class="frontPageText" th:text="#{front_page.introduction}"></p>
+                                </blockquote>
+                            </div>
+
                     </div>
                 </div>
                 <div th:class="row" style="margin-top: 20px;">

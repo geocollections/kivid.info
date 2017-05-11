@@ -20,12 +20,11 @@ public class ThemePageController {
         introductionText = rockService.getText(id);
         if(introductionText!=null) {
             model.addAttribute("rocksText", introductionText);
-            return "theme";
         } else {
             model.addAttribute("rocksText", null);
-            model.addAttribute("id", id);
-            return "theme";
         }
+        model.addAttribute("pageId", id);
+        return "theme";
     }
 }
 

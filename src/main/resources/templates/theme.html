@@ -6,8 +6,16 @@
 <div class="container">
     <nav th:replace="fragments/navbar :: navbar"></nav>
     <div class="jumbotron">
-        <div class="row " style="padding-top: 80px;padding-bottom: 20px">
-            <div th:replace="fragments/gallery::gallery"></div>
+        <div class="row " style="padding-top: 80px;padding-bottom: 20px" th:switch="${pageId}">
+            <div th:case="60">
+                <div th:replace="fragments/gallery60::gallery " ></div>
+            </div>
+            <div th:case="61">
+                <div th:replace="fragments/gallery61::gallery " ></div>
+            </div>
+            <div th:case="62">
+                <div th:replace="fragments/gallery62::gallery " ></div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -17,15 +25,15 @@
                     <p  th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></p>
                     <p  th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></p>
                 </div>
-                <div class="col-md-6" th:if="${rocksText==null} and ${id==60}">
+                <div class="col-md-6" th:if="${rocksText==null} and ${pageId=='60'}">
                     <h2 th:text="#{minerals}"></h2>
                     <p th:text="#{minerals.introduction}"></p>
                 </div>
-                <div class="col-md-6" th:if="${rocksText==null} and ${id==61}">
+                <div class="col-md-6" th:if="${rocksText==null} and ${pageId=='61'}">
                     <h2 th:text="#{rocks}"></h2>
                     <p th:text="#{rocks.introduction}"></p>
                 </div>
-                <div class="col-md-6" th:if="${rocksText==null} and ${id==62}">
+                <div class="col-md-6" th:if="${rocksText==null} and ${pageId=='62'}">
                     <h2 th:text="#{natural_resources}"></h2>
                     <p th:text="#{natural_resources.introduction}"></p>
                 </div>

@@ -109,6 +109,7 @@
     border-radius: 10px;
 }
 
+
 .carouselPicture{
     object-fit:contain;
     ;
@@ -127,4 +128,22 @@
 .carouselControlChevRight{
     top:10%;
     right:10%;
+}
+
+.paddingLeftRight-30{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.frontPage{
+    padding-top: 50%;
+}
+.frontPageTitle{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.frontPageText{
+    display: flex;
+    align-content: stretch;
+    font-size: 80%;
 }
