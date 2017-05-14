@@ -10,6 +10,8 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.*;
 
+import static java.util.stream.Collectors.toList;
+
 
 @Service
 public class RockService {
@@ -219,6 +221,7 @@ public class RockService {
             return new ArrayList<>();
         }
     }
+
     @JsonIgnoreProperties(ignoreUnknown = true)
     public IntroductionText getText(String id) {
 
@@ -236,5 +239,26 @@ public class RockService {
         }
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public List<Parents> getParents() {
 
+        ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
+        String requestString = "rock_tree/?format=json&fields=parent_id,parent__name,parent__name_en,rock_classification__hierarchy_top_rock_id";
+        try {
+            String resultString = apiConnectionHelper.makeRequest(requestString);
+            ObjectMapper objectMapper = new ObjectMapper();
+            ApiResultWrapper<Parents> result = objectMapper.readValue(resultString, new TypeReference <ApiResultWrapper<Parents>>() {});
+            List<Parents> resultFiltered = result.getResults().stream()
+                    .filter(p -> p.getRock_classification__hierarchy_top_rock_id()==3).sorted().collect(toList());
+            SortedSet<Parents> sortedSet = new TreeSet<Parents>();
+            sortedSet.addAll(resultFiltered);
+            List<Parents> resultUnique = sortedSet.stream().collect(toList());
+            System.out.println(resultUnique.toString());
+            return resultUnique;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -4,112 +4,112 @@
     </head>
 
     <body>
-        <div class="container">
-            <nav th:replace="fragments/navbar :: navbar"></nav>
-            <div class="jumbotron" >
-                <div class="row">
-                    <div class="col-md-7">
-                        <div id="networkcontainer">
-                            <div id="frontpagenetwork"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-5 ">
-
-                            <div th:class="frontPage" th:unless=" ${rocksText==null}">
-                                <h2 class="frontPageTitle" th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
-                                <h2 class="frontPageTitle" th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
-                                <blockquote>
-                                <div th:class="frontPageText" th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></div>
-                                <div th:class="frontPageText" th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></div>
-                                </blockquote>
-                            </div>
-                            <div th:class="frontPage" th:if="${rocksText==null}">
-                                <h2 th:class="frontPageTitle" th:text="#{front_page.title}"></h2>
-                                <blockquote>
-                                <p th:class="frontPageText" th:text="#{front_page.introduction}"></p>
-                                </blockquote>
-                            </div>
-
+    <div class="container">
+        <nav th:replace="fragments/navbar :: navbar"></nav>
+        <div class="jumbotron" >
+            <div class="row">
+                <div class="col-md-7">
+                    <div id="networkcontainer">
+                        <div id="frontpagenetwork"></div>
                     </div>
                 </div>
-                <div th:class="row" style="margin-top: 20px;">
-                    <div th:replace="fragments/gallery::gallery"></div>
+                <div class="col-md-5 ">
+
+                    <div th:class="frontPage" th:unless=" ${rocksText==null}">
+                        <h2 class="frontPageTitle" th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
+                        <h2 class="frontPageTitle" th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
+                        <blockquote>
+                            <div th:class="frontPageText" th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></div>
+                            <div th:class="frontPageText" th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></div>
+                        </blockquote>
+                    </div>
+                    <div th:class="frontPage" th:if="${rocksText==null}">
+                        <h2 th:class="frontPageTitle" th:text="#{front_page.title}"></h2>
+                        <blockquote>
+                            <p th:class="frontPageText" th:text="#{front_page.introduction}"></p>
+                        </blockquote>
+                    </div>
+
                 </div>
             </div>
-
+            <div th:class="row" style="margin-top: 20px;">
+                <div th:replace="fragments/gallery::gallery"></div>
+            </div>
         </div>
-            <footer th:replace="fragments/footer :: footer"></footer>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/jquery-ui.min.js"></script>
-        <script src="/js/search.js"></script>
-        <link rel="stylesheet" href="/css/vis.css"/>
-        <script src="/js/vis.js"></script>
-        <script src="/js/custom.js"></script>
-        <script src="/js/gallery.js"></script>
-        <script src="/js/jquery.fancybox.min.js"></script>
-        <script type="text/javascript" th:inline="javascript">
-            /*<![CDATA[*/
-            var lang = /*[[${#locale.getLanguage()}]]*/ 'et';
-            /*]]>*/
+    </div>
+    <footer th:replace="fragments/footer :: footer"></footer>
 
-            var nodes = new vis.DataSet([
-                {id: 1, label: 'Kivi', group: 'main'},
-                {id: 2, label: 'Kivim'},
-                {id: 3, label: 'Mineraal'},
-                {id: 4, label: 'Maavara'}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+    <script src="/js/search.js"></script>
+    <link rel="stylesheet" href="/css/vis.css"/>
+    <script src="/js/vis.js"></script>
+    <script src="/js/custom.js"></script>
+    <script src="/js/gallery.js"></script>
+    <script src="/js/jquery.fancybox.min.js"></script>
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        var lang = /*[[${#locale.getLanguage()}]]*/ 'et';
+        /*]]>*/
+
+        var nodes = new vis.DataSet([
+            {id: 1, label: 'Kivi', group: 'main'},
+            {id: 2, label: 'Kivim'},
+            {id: 3, label: 'Mineraal'},
+            {id: 4, label: 'Maavara'}
+        ]);
+        if(lang === 'en') {
+            nodes = new vis.DataSet([
+                {id: 1, label: 'Stone', group: 'main'},
+                {id: 2, label: 'Rock'},
+                {id: 3, label: 'Mineral'},
+                {id: 4, label: 'Resource'}
             ]);
-            if(lang === 'en') {
-                nodes = new vis.DataSet([
-                    {id: 1, label: 'Stone', group: 'main'},
-                    {id: 2, label: 'Rock'},
-                    {id: 3, label: 'Mineral'},
-                    {id: 4, label: 'Resource'}
-                ]);
-            }
+        }
 
-            var edges = new vis.DataSet([
-                {from: 1, to: 2},
-                {from: 1, to: 3},
-                {from: 1, to: 4}
-            ]);
+        var edges = new vis.DataSet([
+            {from: 1, to: 2},
+            {from: 1, to: 3},
+            {from: 1, to: 4}
+        ]);
 
-            // create a network
-            var container = document.getElementById('frontpagenetwork');
+        // create a network
+        var container = document.getElementById('frontpagenetwork');
 
-            // provide the data in the vis format
-            var data = {
-                nodes: nodes,
-                edges: edges
-            };
-            var options = {
-                nodes:{
-                    shape: 'circularImage',
-                    image: "images/g2tsta_small.png",
-                    color: {
-                        background: 'rgba(255, 255, 255, 0)',
-                        border:'rgba(255, 255, 255, 0)',
-                        highlight: 'rgba(255, 255, 255, 0)'
-                    },
-                    font: {
-                        color: '#c8c8c8',
-                        size: 20
-                    },
-                    mass: 2, //makes edges long enough
-                    size: 50
+        // provide the data in the vis format
+        var data = {
+            nodes: nodes,
+            edges: edges
+        };
+        var options = {
+            nodes:{
+                shape: 'circularImage',
+                image: "images/g2tsta_small.png",
+                color: {
+                    background: 'rgba(255, 255, 255, 0)',
+                    border:'rgba(255, 255, 255, 0)',
+                    highlight: 'rgba(255, 255, 255, 0)'
                 },
-                edges:{
-                    color:'#f8f8f8'
+                font: {
+                    color: '#c8c8c8',
+                    size: 20
                 },
-                groups:{
-                    main:{
-                        size:100
-                    }
+                mass: 2, //makes edges long enough
+                size: 50
+            },
+            edges:{
+                color:'#f8f8f8'
+            },
+            groups:{
+                main:{
+                    size:100
                 }
-            };
+            }
+        };
 
-            var network = new vis.Network(container, data, options);
-        </script>
+        var network = new vis.Network(container, data, options);
+    </script>
     </body>
 </html>

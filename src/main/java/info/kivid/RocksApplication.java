@@ -14,6 +14,7 @@ import java.util.Locale;
 @SpringBootApplication
 public class RocksApplication extends WebMvcConfigurerAdapter {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(RocksApplication.class, args);
 	}
@@ -32,9 +33,13 @@ public class RocksApplication extends WebMvcConfigurerAdapter {
 		return lci;
 	}
 
+
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry)
 	{
 		registry.addInterceptor(localeChangeInterceptor());
 	}
+
+
 }

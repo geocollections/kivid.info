@@ -5,7 +5,7 @@
 <body>
 <div class="container">
     <nav th:replace="fragments/navbar :: navbar"></nav>
-    <div class="jumbotron">
+    <div class="jumbotron smalle">
         <div class="row " style="padding-top: 80px;padding-bottom: 20px" th:switch="${pageId}">
             <div th:case="60">
                 <div th:replace="fragments/gallery60::gallery " ></div>
@@ -19,29 +19,40 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-6" th:unless=" ${rocksText==null}">
-                    <h2 th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
-                    <h2 th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
-                    <p  th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></p>
+                <div class="col-md-9" th:unless=" ${rocksText==null}">
+                    <h3 th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h3>
+                    <h3 th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h3>
+                    <div th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></div>
                     <p  th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></p>
                 </div>
-                <div class="col-md-6" th:if="${rocksText==null} and ${pageId=='60'}">
+                <div class="col-md-9" th:if="${rocksText==null} and ${pageId=='60'}">
                     <h2 th:text="#{minerals}"></h2>
                     <p th:text="#{minerals.introduction}"></p>
                 </div>
-                <div class="col-md-6" th:if="${rocksText==null} and ${pageId=='61'}">
+                <div class="col-md-9" th:if="${rocksText==null} and ${pageId=='61'}">
                     <h2 th:text="#{rocks}"></h2>
                     <p th:text="#{rocks.introduction}"></p>
                 </div>
-                <div class="col-md-6" th:if="${rocksText==null} and ${pageId=='62'}">
+                <div class="col-md-9" th:if="${rocksText==null} and ${pageId=='62'}">
                     <h2 th:text="#{natural_resources}"></h2>
                     <p th:text="#{natural_resources.introduction}"></p>
+                </div>
+                <div class="col-md-3">
+                    <blockquote th:class="themeBar">
+                            <div class="list-group" th:each="rock : ${parentsList}">
+                                    <a style="color:#c8c8c8;" th:href="'/rock/'+${rock.parent_id}"  th:text="${rock.parent__name}" th:unless="${#locale.getLanguage()=='en'}"></a>
+                                   <a style="color:#c8c8c8;" th:href="'/rock/'+${rock.parent_id}"  th:text="${rock.parent__name}" th:if="${#locale.getLanguage()=='en'}"></a>
+                            </div>
+                    </blockquote>
+
+
+
                 </div>
             </div>
         </div>
     </div>
-    <footer th:replace="fragments/footer :: footer"></footer>
 </div>
+<footer th:replace="fragments/footer :: footer"></footer>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>

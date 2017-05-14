@@ -147,3 +147,18 @@
     align-content: stretch;
     font-size: 80%;
 }
+.jumbotron p{
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 100;
+}
+.themeBar{
+    font-size: 14px;
+    margin-left: 25%;
+    margin-right: 5px;
+    padding-right: 5px;
+    margin-top: 30px;
+    padding-left: 10%;
+    border-left-width: 2px;
+}
+
