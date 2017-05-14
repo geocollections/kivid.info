@@ -1,22 +1,20 @@
 package info.kivid.service.helper;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.security.SecureRandom;
-import java.security.cert.X509Certificate;
-import java.util.stream.Collectors;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.HttpClientBuilder;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
+import java.util.stream.Collectors;
 
 /**
  * Created by Maarja on 31.03.2017.
@@ -32,12 +30,13 @@ public class ApiConnectionHelper {
         String getString = addressBase + requestString;
         HttpGet get = new HttpGet(getString);
 
+
         HttpResponse httpResponse = httpClient.execute(get);
         System.out.println(httpResponse.getStatusLine());
 
         HttpEntity responseEntity = httpResponse.getEntity();
         String fromResponse = new BufferedReader(
-                new InputStreamReader(responseEntity.getContent())).lines()
+                new InputStreamReader(responseEntity.getContent(), "UTF-8")).lines()
                 .collect(Collectors.joining("\n"));
         System.out.println(fromResponse);
         return fromResponse;
