@@ -8,6 +8,37 @@
 <div class="carousel slide" id="myCarousel">
     <div class="carousel-inner">
         <div class="item active" >
+            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
+                <a href="../images/front_gallery/kalkopüriit.png" data-fancybox="gallery">
+                    <img src="../images/front_gallery/kalkopüriit.png" class="img-responsive carouselPicture"/></a>
+                <a href="/rock/282" th:unless="${#locale.getLanguage()=='en'}" th:text="kalkopüriit"></a>
+                <a href="/rock/282" th:if="${#locale.getLanguage()=='en'}" th:text="Chalcopyrite" ></a>
+            </div>
+
+            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" >
+                <a href="../images/front_gallery/haliit.png" data-fancybox="gallery" >
+                    <img src="../images/front_gallery/haliit.png" class="img-responsive carouselPicture"/></a>
+                <a href="/rock/374" th:unless="${#locale.getLanguage()=='en'}" th:text="haliit"></a>
+                <a href="/rock/374" th:if="${#locale.getLanguage()=='en'}" th:text="Halite" ></a>
+
+            </div>
+            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
+                <a href="../images/front_gallery/kvarts.png" data-fancybox="gallery">
+                    <img src="../images/front_gallery/kvarts.png" class="img-responsive carouselPicture"/></a>
+                <a href="/rock/605" th:unless="${#locale.getLanguage()=='en'}" th:text="kvarts"></a>
+                <a href="/rock/605" th:if="${#locale.getLanguage()=='en'}" th:text="Quartz" ></a>
+
+            </div>
+            <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3">
+                <a href="../images/front_gallery/labrador.png" data-fancybox="gallery">
+                    <img src="../images/front_gallery/labrador.png" class="img-responsive carouselPicture"/></a>
+                <a href="/rock/615" th:unless="${#locale.getLanguage()=='en'}" th:text="labrador"></a>
+                <a href="/rock/615" th:if="${#locale.getLanguage()=='en'}" th:text="Labradorite" ></a>
+
+            </div>
+        </div>
+
+        <div class="item" >
             <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" >
                 <a href="../images/front_gallery/auripigment.png" data-fancybox="gallery" >
                     <img src="../images/front_gallery/auripigment.png" class="img-responsive carouselPicture"/></a>

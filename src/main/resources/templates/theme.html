@@ -23,7 +23,7 @@
                     <h3 th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h3>
                     <h3 th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h3>
                     <div th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></div>
-                    <p  th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></p>
+                    <div  th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></div>
                 </div>
                 <div class="col-md-9" th:if="${rocksText==null} and ${pageId=='60'}">
                     <h2 th:text="#{minerals}"></h2>
@@ -39,10 +39,10 @@
                 </div>
                 <div class="col-md-3">
                     <blockquote th:class="themeBar">
-                            <div class="list-group" th:each="rock : ${parentsList}">
-                                    <a style="color:#c8c8c8;" th:href="'/rock/'+${rock.parent_id}"  th:text="${rock.parent__name}" th:unless="${#locale.getLanguage()=='en'}"></a>
-                                   <a style="color:#c8c8c8;" th:href="'/rock/'+${rock.parent_id}"  th:text="${rock.parent__name}" th:if="${#locale.getLanguage()=='en'}"></a>
-                            </div>
+                        <div class="list-group" th:each="rock : ${parentsList}">
+                            <a style="color:#c8c8c8;" th:href="'/rock/'+${rock.parent_id}"  th:text="${rock.parent__name}" th:unless="${#locale.getLanguage()=='en'}"></a>
+                            <a style="color:#c8c8c8;" th:href="'/rock/'+${rock.parent_id}"  th:text="${rock.parent__name}" th:if="${#locale.getLanguage()=='en'}"></a>
+                        </div>
                     </blockquote>
 
 

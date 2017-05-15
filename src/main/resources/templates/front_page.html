@@ -18,7 +18,7 @@
                     <div th:class="frontPage" th:unless=" ${rocksText==null}">
                         <h2 class="frontPageTitle" th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
                         <h2 class="frontPageTitle" th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
-                        <blockquote>
+                        <blockquote style="   border-left-width: 2px;">
                             <div th:class="frontPageText" th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></div>
                             <div th:class="frontPageText" th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></div>
                         </blockquote>

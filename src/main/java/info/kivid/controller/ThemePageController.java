@@ -27,10 +27,16 @@ public class ThemePageController {
             model.addAttribute("rocksText", null);
         }
         model.addAttribute("pageId", id);
+        List <Parents> parents = null ;
+
         if(id.contentEquals("60")){
-            List <Parents> parents = rockService.getParents() ;
-            model.addAttribute("parentsList",parents);
+            parents = rockService.getParents() ;
         }
+        else if(id.contentEquals("61")){
+            parents = rockService.getParents2() ;
+        }
+        model.addAttribute("parentsList",parents);
+
         return "theme";
     }
 }
