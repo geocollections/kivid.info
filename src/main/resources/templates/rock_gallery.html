@@ -6,6 +6,9 @@
         <nav th:replace="fragments/navbar :: navbar"></nav>
         <div class="container">
             <div class="row" style="padding-top: 80px;">
+                <p>
+                    <a th:href="@{/rock/} + ${rockId}" th:text="#{back_to_rock}"></a>
+                </p>
                 <div class="col-md-4" th:each="image : ${images}">
                     <a data-fancybox="gallery" th:href="${image.image__image_url}" th:attr="data-caption=${image.image__image_url}">
                         <img th:src="${image.image__image_url}" height="200" class="padding-20"/>

@@ -5,7 +5,10 @@
     <body th:attr="data-has-map=${rockId}">
         <nav th:replace="fragments/navbar :: navbar"></nav>
         <div class="container">
-            <div class="row">
+            <div class="row top-padding-80">
+                <p>
+                    <a th:href="@{/rock/} + ${rockId}" th:text="#{back_to_rock}"></a>
+                </p>
                 <div id="map" class="large-map"></div>
             </div>
             <footer th:replace="fragments/footer :: footer"></footer>

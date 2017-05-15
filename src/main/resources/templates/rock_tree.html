@@ -7,11 +7,16 @@
 <body th:attr="data-has-map=${rockId}">
 <nav th:replace="fragments/navbar :: navbar"></nav>
 <div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div id="rocktree-network" class="top-clear-80"></div>
+    <div class="row top-clear-80">
+        <div class="col-md-12">
+            <p>
+                <a th:href="@{/rock/} + ${rockId}" th:text="#{back_to_rock}"></a>
+            </p>
         </div>
-        <div class="col-md-4 top-clear-80">
+        <div class="col-md-8">
+            <div id="rocktree-network" class=""></div>
+        </div>
+        <div class="col-md-4">
             <p th:text="#{selected_node}"></p>
             <p id="nodeDataContainer"></p>
         </div>

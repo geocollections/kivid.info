@@ -37,6 +37,7 @@ public class RockController {
         List<ImageApiResult> images = rockService.getRockGallery(id);
         if (images != null) {
             model.addAttribute("images", images);
+            model.addAttribute("rockId", id);
             return "rock_gallery";
         }
         return "rock_error";
