@@ -52,6 +52,7 @@ public class RockController {
     public String getRockTree(@PathVariable("id") String id, Model model) {
         List<TreeApiResult> tree = rockService.getRockTree(id);
         model.addAttribute("rockTree", tree);
+        model.addAttribute("rockId", id);
         return "rock_tree";
     }
 }

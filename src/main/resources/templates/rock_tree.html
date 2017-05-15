@@ -23,11 +23,16 @@
                     <th class="padded-cell">ID</th>
                     <th class="padded-cell">parent</th>
                     <th class="padded-cell">name</th>
+                    <th class="padded-cell">classification</th>
                 </tr>
                 <tr th:each="item : ${rockTree}">
                     <td th:text="${item.rock_id}" class="padded-cell">N/A</td>
                     <td th:text="${item.parent_id}" class="padded-cell">N/A</td>
-                    <td th:text="${item.rock__name}" class="padded-cell">N/A</td>
+                    <td class="padded-cell">
+                        <span th:text="${item.rock__name}"></span><br />
+                        <span th:text="${item.rock__name_en}"></span>
+                    </td>
+                    <td th:text="${item.rock_classification_id}" class="padded-cell">N/A</td>
                 </tr>
             </table>
         </div>
@@ -47,6 +52,7 @@
     /*<![CDATA[*/
     var tree = /*[[${rockTree}]]*/ undefined;
     var lang = /*[[${#locale.getLanguage()}]]*/ 'et';
+    var rockId = /*[[${rockId}]]*/ 0;
     /*]]>*/
 
     var nds = [];
@@ -54,7 +60,12 @@
     var extantNodes = [];
     tree.forEach(function(element) {
         if(!extantNodes.includes(element.rock_id)) {
-            var node = {id: element.rock_id, label: element.rock__name};
+            var label = element.rock__name;
+            if(lang === 'en') label = element.rock__name_en;
+            var node = {id: element.rock_id, label: label};
+            if(element.rock_id === rockId) {
+                node = {id: element.rock_id, label: label, group: 'mainRock'};
+            }
             nds.push(node);
         }
 
@@ -62,6 +73,7 @@
         edgs.push(edge);
         extantNodes.push(element.rock_id);
     });
+    console.debug(nds);
 
     var nodes = new vis.DataSet(nds);
     var edges = new vis.DataSet(edgs);
@@ -75,6 +87,13 @@
     var options = {
         nodes: {
             shape: 'box'
+        },
+        groups:{
+            mainRock:{
+                color: {
+                    background: 'rgba(255, 0, 0, 100)'
+                }
+            }
         }
     };
 

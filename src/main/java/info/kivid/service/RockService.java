@@ -88,7 +88,8 @@ public class RockService {
     }
 
     private List<TreeApiResult> getTreeResults(ApiConnectionHelper helper, String id) {
-        String reqStringBegin = "rock_tree/?fields=rock_id,parent_id,rock__name&multi_search=value:";
+        String reqStringBegin = "rock_tree/?fields=rock_id,parent_id,rock__name,rock__name_en,parent__name,parent__name_en," +
+                "rock_classification_id&multi_search=value:";
         String reqStringEnd = ";fields:rock_id,parent_id;lookuptype:exact&format=json";
         String requestString = reqStringBegin + id + reqStringEnd;
 
