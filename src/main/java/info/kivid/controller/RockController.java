@@ -1,6 +1,7 @@
 package info.kivid.controller;
 
 import info.kivid.model.ImageApiResult;
+import info.kivid.model.PropertyApiResult;
 import info.kivid.model.RockApiResult;
 import info.kivid.model.TreeApiResult;
 import info.kivid.service.RockService;
@@ -24,6 +25,9 @@ public class RockController {
         RockApiResult rockApiResult = rockService.getRock(id);
         if (rockApiResult != null) {
             model.addAttribute("rock", rockApiResult);
+
+            List<PropertyApiResult> props = rockService.getRockProperties(id);
+            model.addAttribute("properties", props);
 
             List<TreeApiResult> tree = rockService.getRockTree(id);
             model.addAttribute("rockTree", tree);

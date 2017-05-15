@@ -7,6 +7,7 @@ import info.kivid.model.*;
 import info.kivid.service.helper.ApiConnectionHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -132,6 +133,33 @@ public class RockService {
             e.printStackTrace();
             return new ArrayList<>();
         }
+    }
+
+    public List<PropertyApiResult> getRockProperties(String id) {
+        ApiConnectionHelper apiConnectionHelper = new ApiConnectionHelper();
+        String requestString = "rock_property/?rock_id=" + id + "&format=json";
+        try {
+            String resultString = apiConnectionHelper.makeRequest(requestString);
+            ObjectMapper mapper = new ObjectMapper();
+            PropertyApiResultWrapper apiResultWrapper = mapper.readValue(resultString, PropertyApiResultWrapper.class);
+
+            List<PropertyApiResult> adjusteds = new ArrayList<PropertyApiResult>();
+            for(PropertyApiResult result: apiResultWrapper.getResults()) {
+                adjusteds.add(adjustPropertyApiResult(result));
+            }
+            return adjusteds;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    private PropertyApiResult adjustPropertyApiResult(PropertyApiResult result) {
+        if(StringUtils.isEmpty(result.getValue_txt())) {
+            String range = result.getValue_min() + " – " + result.getValue_max();
+            result.setValue_txt(range);
+        }
+        return result;
     }
 
     public List<RockApiResult> search(SearchForm searchForm, String language) {

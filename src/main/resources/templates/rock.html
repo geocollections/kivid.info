@@ -32,6 +32,21 @@
                             <p th:text="${rock.description_usage_en}" th:unless="${#locale.getLanguage()== 'et'}"></p>
                             <p th:text="${rock.description_usage}" th:unless="${#locale.getLanguage()== 'en'}"></p>
                         </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><span th:text="#{props_title}"></span></div>
+                            <div class="panel-body">
+                                <table class="padded-table">
+                                    <tr th:each="item : ${properties}">
+                                        <td class="padded-cell">
+                                            <span th:text="${item.property_en}" th:unless="${#locale.getLanguage()== 'et'}">N/A</span>
+                                            <span th:text="${item.property}" th:unless="${#locale.getLanguage()== 'en'}"></span>
+                                        </td>
+                                        <td th:text="${item.value_txt}" class="padded-cell">N/A</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-6">
