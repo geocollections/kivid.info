@@ -41,7 +41,7 @@
                     <blockquote th:class="themeBar" th:unless="${parentsList}==null">
                         <div class="list-group" th:each="rock : ${parentsList}">
                             <a style="color:#c8c8c8;" th:href="'/rock/'+${rock.parent_id}"  th:text="${rock.parent__name}" th:unless="${#locale.getLanguage()=='en'}"></a>
-                            <a style="color:#c8c8c8;" th:href="'/rock/'+${rock.parent_id}"  th:text="${rock.parent__name}" th:if="${#locale.getLanguage()=='en'}"></a>
+                            <a style="color:#c8c8c8;" th:href="'/rock/'+${rock.parent_id}"  th:text="${rock.parent__name_en}" th:if="${#locale.getLanguage()=='en'}"></a>
                         </div>
                     </blockquote>
                 </div>
