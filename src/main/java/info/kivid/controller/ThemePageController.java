@@ -1,5 +1,6 @@
 package info.kivid.controller;
 
+import info.kivid.enums.Theme;
 import info.kivid.model.IntroductionText;
 import info.kivid.model.Parents;
 import info.kivid.service.RockService;
@@ -17,8 +18,9 @@ public class ThemePageController {
     @Autowired
     private RockService rockService;
 
-    @RequestMapping(value = "/theme/{id}", method = RequestMethod.GET)
-    public String rocks(@PathVariable("id") String id, Model model) {
+    @RequestMapping(value = "/theme/{theme_name}", method = RequestMethod.GET)
+    public String rocks(@PathVariable("theme_name") Theme theme_name, Model model) {
+        String id = theme_name.getId();
         IntroductionText introductionText;
         introductionText = rockService.getText(id);
         if(introductionText!=null) {

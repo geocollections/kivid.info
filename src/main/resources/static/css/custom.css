@@ -113,20 +113,9 @@
     object-fit:contain;
     ;
 }
-.carouselControlLeft{
+.carousel-control{
     bottom:30%;
-
-}
-.carouselControlRight{
-    bottom:30%;
-}
-.carouselControlChevLeft{
-    top:10%;
-    left:10%;
-}
-.carouselControlChevRight{
-    top:10%;
-    right:10%;
+    width:5%;
 }
 
 .paddingLeftRight-30{
@@ -147,7 +136,7 @@
     font-size: 80%;
 }
 .jumbotron p{
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 15px;
     font-weight: 100;
 }

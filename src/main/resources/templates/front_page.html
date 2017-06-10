@@ -14,10 +14,10 @@
                     </div>
                 </div>
                 <div class="col-md-5 ">
-
+                    <div ></div>
                     <div th:class="frontPage" th:unless=" ${rocksText==null}">
-                        <h2 class="frontPageTitle" th:text="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
-                        <h2 class="frontPageTitle" th:text="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
+                        <h2 class="frontPageTitle" th:utext="${rocksText.title_et}"  th:unless="${#locale.getLanguage()=='en'}"></h2>
+                        <h2 class="frontPageTitle" th:utext="${rocksText.title_en}" th:if="${#locale.getLanguage()=='en'}"></h2>
                         <blockquote style="   border-left-width: 2px;">
                             <div th:class="frontPageText" th:utext="${rocksText.content_et}" th:unless="${#locale.getLanguage()=='en'}"></div>
                             <div th:class="frontPageText" th:utext="${rocksText.content_en}" th:if="${#locale.getLanguage()=='en'}"></div>
@@ -36,9 +36,9 @@
                 <div th:replace="fragments/gallery::gallery"></div>
             </div>
         </div>
-
+        <footer th:replace="fragments/footer :: footer"></footer>
     </div>
-    <footer th:replace="fragments/footer :: footer"></footer>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
