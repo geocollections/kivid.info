@@ -1,9 +1,6 @@
 package info.kivid.controller;
 
-import info.kivid.model.ImageApiResult;
-import info.kivid.model.PropertyApiResult;
-import info.kivid.model.RockApiResult;
-import info.kivid.model.TreeApiResult;
+import info.kivid.model.*;
 import info.kivid.service.RockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+
+
 
 @Controller
 public class RockController {
@@ -26,6 +25,10 @@ public class RockController {
         if (rockApiResult != null) {
             model.addAttribute("rock", rockApiResult);
 
+            RockCarousellContainer imagesContainers = new RockCarousellContainer(rockService.getRockGallery(id),4);
+
+            model.addAttribute("images", imagesContainers.getContainers());
+
             List<PropertyApiResult> props = rockService.getRockProperties(id);
             model.addAttribute("properties", props);
 
@@ -33,6 +36,7 @@ public class RockController {
             model.addAttribute("rockTree", tree);
             return "rock";
         }
+
         return "rock_error";
     }
 

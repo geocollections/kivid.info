@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div th:fragment="gallery">
+    <div class="carousel slide" id="myCarousel">
+        <div class="carousel-inner" >
+            <div th:class="item" th:each="container : ${images}" th:classappend= "${containerStat.first}? 'active'">
+                <div class="col-lg-3 col-xs-3 col-md-3 col-sm-3" th:each="image : ${container}" >
+                    <a th:href="${image.image__image_url}" data-fancybox="gallery">
+                        <img th:src="${image.image__image_url}" class="img-responsive carouselPicture"/></a>
+
+                </div>
+            </div>
+
+        </div>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" th:unless="${#lists.size(images)==1}">
+            <span class="glyphicon glyphicon-chevron-left" style="top: 10%; left: 10%" aria-hidden="true"></span>
+            <span class="sr-only ">Previous</span>
+        </a>
+        <a class="right carousel-control"   href="#myCarousel" role="button" data-slide="next" th:unless="${#lists.size(images)==1}">
+            <span class="glyphicon glyphicon-chevron-right" style="right: 10%; top: 10%" aria-hidden="true" ></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+</div>
+</body>
+</html>

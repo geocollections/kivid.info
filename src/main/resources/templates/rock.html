@@ -5,7 +5,10 @@
     <body th:attr="data-has-map=${rock.id}">
         <nav th:replace="fragments/navbar :: navbar"></nav>
         <div class="container">
-            <div class="jumbotron">
+            <div class="jumbotron smalle">
+                <div class="row " style="padding-top: 80px;padding-bottom: 20px">
+                        <div th:replace="fragments/rockgallery::gallery " th:unless="${images==null}"></div>
+                </div>
                 <div class="row">
 
                     <div class="col-md-6">
@@ -80,7 +83,8 @@
         <script src="/js/search.js"></script>
         <script src="/js/map.js"></script>
         <script src="/js/custom.js"></script>
-
+        <script src="/js/gallery.js"></script>
+        <script src="/js/jquery.fancybox.min.js"></script>
         <link rel="stylesheet" href="/css/vis.min.css"/>
         <script src="/js/vis.min.js"></script>
 
